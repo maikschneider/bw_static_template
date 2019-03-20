@@ -30,6 +30,8 @@
 								<type>text</type>
 								<cols>30</cols>
 								<rows>5</rows>
+								<renderType>t3editor</renderType>
+								<format>javascript</format>
 							</config>
 						</TCEforms>
 					</settings.json>

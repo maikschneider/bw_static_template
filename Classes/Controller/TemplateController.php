@@ -23,6 +23,12 @@ class TemplateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             }
         }
 
+        $json = $this->settings['json'];
+        if($json) {
+            $data = json_decode($json);
+            $this->view->assignMultiple((array)$data);
+        }
+
         $this->view->assign('files', $files);
         $this->view->setTemplatePathAndFilename($this->settings['templateName']);
     }

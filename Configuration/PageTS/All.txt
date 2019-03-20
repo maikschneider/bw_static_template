@@ -1,0 +1,15 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+	elements {
+		bwstatictemplate_pi1 {
+			iconIdentifier = tx_bwstatictemplate_pi1
+			title = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title
+			description = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.description
+			tt_content_defValues {
+				CType = list
+				list_type = bwstatictemplate_pi1
+			}
+		}
+	}
+	show = *
+}
+

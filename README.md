@@ -14,18 +14,18 @@ composer require blueways/bw-static-template
 ## Usage
 
 * Add plugin to page
-* Select fluid template to render (e.g. EXT:your_ext/Resources/Private/Partials/Header.html)
+* Select fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
 * Optional: Use json to pass data into template
 
 ```json
 {
 "templateMarker1": "Example text data",
-"templateMarker2:": ["lorem", "ipsum"]
+"templateMarker2": ["lorem", "ipsum"]
 }
 ```
 * Optional: Select images
 
-Now you can use the given data in your template, e.g. 
+Now you can use the given data in your template, e.g.: 
 
 ```
 Hello {templateMarker1}!

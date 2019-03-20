@@ -1,0 +1,255 @@
+<T3DataStructure>
+	<meta type="array">
+		<langChildren>0</langChildren>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<sDEF>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>
+						LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist
+					</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<switchableControllerActions>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.mode
+							</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.mode.list
+										</numIndex>
+										<numIndex index="1">Offer->list;Offer->show</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.mode.edit
+										</numIndex>
+										<numIndex index="1">
+											Offer->edit;Offer->update;Offer->new;Offer->delete
+										</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.mode.latest
+										</numIndex>
+										<numIndex index="1">Offer->latest;Offer->show</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</switchableControllerActions>
+					<settings.record_type>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.record_type
+							</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.record_type.default
+										</numIndex>
+										<numIndex index="1">Blueways\BwGuild\Domain\Repository\OfferRepository
+										</numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.record_type.jobs
+										</numIndex>
+										<numIndex index="1">Blueways\BwGuild\Domain\Repository\JobRepository
+										</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.record_type.educations
+										</numIndex>
+										<numIndex index="1">Blueways\BwGuild\Domain\Repository\EducationRepository
+										</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.record_type.internships
+										</numIndex>
+										<numIndex index="1">Blueways\BwGuild\Domain\Repository\InternshipRepository
+										</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.record_type>
+					<settings.categories>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categories
+							</label>
+							<config>
+								<type>select</type>
+								<autoSizeMax>20</autoSizeMax>
+								<foreign_table>sys_category</foreign_table>
+								<foreign_table_where>AND sys_category.sys_language_uid IN (-1, 0) ORDER BY
+									sys_category.sorting ASC
+								</foreign_table_where>
+								<maxitems>9999</maxitems>
+								<renderMode>tree</renderMode>
+								<size>10</size>
+								<treeConfig>
+									<appearance>
+										<expandAll>1</expandAll>
+										<showHeader>1</showHeader>
+									</appearance>
+									<parentField>parent</parentField>
+								</treeConfig>
+							</config>
+						</TCEforms>
+					</settings.categories>
+					<settings.categoryConjunction>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction
+							</label>
+							<config>
+								<type>select</type>
+								<renderType>selectSingle</renderType>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.all
+										</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.or
+										</numIndex>
+										<numIndex index="1">or</numIndex>
+									</numIndex>
+									<numIndex index="2">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.and
+										</numIndex>
+										<numIndex index="1">and</numIndex>
+									</numIndex>
+									<numIndex index="3">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notor
+										</numIndex>
+										<numIndex index="1">notor</numIndex>
+									</numIndex>
+									<numIndex index="4">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.categoryConjunction.notand
+										</numIndex>
+										<numIndex index="1">notand</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.categoryConjunction>
+					<settings.showPid>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.showPid
+							</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+							</config>
+						</TCEforms>
+					</settings.showPid>
+					<settings.editPid>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.editPid
+							</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+							</config>
+						</TCEforms>
+					</settings.editPid>
+					<settings.userPid>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.userPid
+							</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+							</config>
+						</TCEforms>
+					</settings.userPid>
+					<settings.limit>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.limit
+							</label>
+							<config>
+								<type>input</type>
+								<size>20</size>
+								<max>30</max>
+								<eval>trim,int</eval>
+							</config>
+						</TCEforms>
+					</settings.limit>
+					<settings.order>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.order
+							</label>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">
+											LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:flexforms_general.order.default
+										</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.order>
+					<persistence.storagePid>
+						<TCEforms>
+							<label>
+								LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist.storagePid
+							</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>2</size>
+								<maxitems>99</maxitems>
+								<minitems>0</minitems>
+							</config>
+						</TCEforms>
+					</persistence.storagePid>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

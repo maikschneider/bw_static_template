@@ -7,7 +7,7 @@
   "keywords": [
     "TYPO3 CMS"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
     "typo3/cms-base-distribution": "^9.0"
   },

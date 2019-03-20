@@ -18,8 +18,9 @@ class TemplateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
                 $itemUid = $fileItemUids[$i];
 
                 $fileReference = $resourceFactory->getFileReferenceObject($itemUid);
-                $fileArray = $fileReference->getProperties();
-                array_push($files, $fileArray);
+                //$fileArray = $fileReference->getProperties();
+                
+                array_push($files, $fileReference);
             }
         }
 

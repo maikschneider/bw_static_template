@@ -8,6 +8,6 @@
 );
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['bwstatictemplate_pi1'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'bwguild_userlist',
+    'bwstatictemplate_pi1',
     'FILE:EXT:bw_static_template/Configuration/FlexForms/Pi1.xml'
 );

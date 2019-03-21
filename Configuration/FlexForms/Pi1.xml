@@ -6,11 +6,6 @@
 	<sheets>
 		<sDEF>
 			<ROOT>
-				<TCEforms>
-					<sheetTitle>
-						LLL:EXT:bw_static_template/Resources/Private/Language/locallang_be.xlf:offerlist
-					</sheetTitle>
-				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.templateName>

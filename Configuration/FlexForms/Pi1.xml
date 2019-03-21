@@ -18,8 +18,7 @@
 							<label>Template name</label>
 							<config>
 								<type>input</type>
-								<size>20</size>
-								<eval>trim</eval>
+								<eval>trim,required</eval>
 							</config>
 						</TCEforms>
 					</settings.templateName>

@@ -1,0 +1,7 @@
+plugin.tx_bwstatictemplate_pi1 {
+	view {
+		templateRootPath =
+		partialRootPath =
+		layoutRootPath =
+	}
+}

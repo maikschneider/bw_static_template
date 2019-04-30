@@ -24,7 +24,7 @@
 								<type>text</type>
 								<cols>30</cols>
 								<rows>5</rows>
-								<renderType>t3editor</renderType>
+								<renderType>jsonForm</renderType>
 								<format>javascript</format>
 							</config>
 						</TCEforms>

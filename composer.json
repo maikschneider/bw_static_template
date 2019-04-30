@@ -7,6 +7,9 @@
   "keywords": [
     "TYPO3 CMS"
   ],
+  "require": {
+    "blueways/bw-jsoneditor": "1.*"
+  },
   "require-dev": {
     "typo3/cms-base-distribution": "^9.0"
   },

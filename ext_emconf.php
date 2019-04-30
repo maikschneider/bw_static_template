@@ -7,6 +7,7 @@ $EM_CONF[$_EXTKEY] = [
         'depends' => [
             'typo3' => '8.7.0-9.5.99',
             'fluid_styled_content' => '9.5.4-9.99.99',
+            'bw_jsoneditor' => '1.0.0-1.99.99'
         ],
         'conflicts' => [
         ],
@@ -23,5 +24,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Maik Schneider',
     'author_email' => 'm.schneider@blueways.de',
     'author_company' => 'blueways',
-    'version' => '1.0.7',
+    'version' => '1.0.8',
 ];

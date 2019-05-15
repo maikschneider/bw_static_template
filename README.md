@@ -13,28 +13,48 @@ composer require blueways/bw-static-template
 
 ## Usage
 
-* Add plugin to page
-* Select fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
-* Optional: Use json to pass data into template
+### Add plugin to page
+
+Select fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
+
+### Optional: Pass data into template
+
+Enter valid JSON:
 
 ```json
 {
-"templateMarker1": "Example text data",
-"templateMarker2": ["lorem", "ipsum"]
+	"templateMarker1": "Example marker data",
+	"persons": [
+		{
+			"name": "Markus Mustermann",
+			"contactUid": 3
+		},
+		{
+			"name": "Paul Werner",
+			"contactUid": 4
+		}
+	]
 }
 ```
-* Optional: Select images
 
-Now you can use the given data in your template, e.g.: 
+Now you can use the given data in your template, e.g.:
 
 ```
 Hello {templateMarker1}!
+
+<f:for each="{persons}" as="person">
+	Say hello to <f:link.page pageUid="{person.contactUid}">{person.name}</f:link.page>
+</f:for>
 ```
 
-or
-
-```
-<f:for each="{templateMarker2}" as="text">{text}</f:for> 
-```
+### Optional: Select images
 
 The selected images are accessible as **FileReference** via ```{files}``` marker.
+
+```
+<f:for each="{files}" as="file">
+	<f:image image="{file}" />
+</f:for>
+			 
+```
+

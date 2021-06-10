@@ -1,4 +1,9 @@
-# blueways Static Template
+# Static Template TYPO3 extension
+
+Frontend plugin that renders fluid templates. Inject JSON data or FAL files into the templates. Perfect for fast
+template development with example data.
+
+![Plugin in the TYPO3 Backend](Documentation/Images/Example.png)
 
 ## Install
 
@@ -57,4 +62,9 @@ The selected images are accessible as **FileReference** via ```{files}``` marker
 </f:for>
 			 
 ```
+
+## Contribute
+
+Feel free to contribute! [Bitbucket-Repository](https://bitbucket.org/blueways/bw_static_template)
+
 

@@ -1,7 +1,7 @@
 <?php
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Static Template',
-    'description' => 'Frontend plugin that renders fluid templates. Inject JSON data or FAL images into the templates. Perfect for fast template development width example data.',
+    'description' => 'Frontend plugin that renders fluid templates. Inject JSON data or FAL files into the templates. Perfect for fast template development with example data.',
     'category' => 'templates',
     'constraints' => [
         'depends' => [

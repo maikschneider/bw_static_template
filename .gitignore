@@ -1,8 +1,0 @@
-# Created by .ignore support plugin (hsz.mobi)
-.idea
-.ddev
-public
-!Resources/Public
-var
-bin
-vendor

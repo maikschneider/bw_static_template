@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6e52911dd81748f3dc7a915742b4b1bd",
+    "content-hash": "9e0b674b4bca22ef0c6f7fd85944af9b",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -4468,6 +4468,113 @@
     ],
     "packages-dev": [
         {
+            "name": "bk2k/bootstrap-package",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/benjaminkott/bootstrap_package.git",
+                "reference": "e4c070887868e3fa36308ae415b76b547dd6a266"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/benjaminkott/bootstrap_package/zipball/e4c070887868e3fa36308ae415b76b547dd6a266",
+                "reference": "e4c070887868e3fa36308ae415b76b547dd6a266",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-filter": "*",
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-pdo": "*",
+                "ext-simplexml": "*",
+                "php": ">=7.2.0",
+                "scssphp/scssphp": "^1.5.0",
+                "typo3/cms-backend": "^10.4 || 11.*.*@dev",
+                "typo3/cms-core": "^10.4 || 11.*.*@dev",
+                "typo3/cms-extbase": "^10.4 || 11.*.*@dev",
+                "typo3/cms-extensionmanager": "^10.4 || 11.*.*@dev",
+                "typo3/cms-fluid": "^10.4 || 11.*.*@dev",
+                "typo3/cms-frontend": "^10.4 || 11.*.*@dev",
+                "typo3/cms-install": "^10.4 || 11.*.*@dev",
+                "typo3/cms-rte-ckeditor": "^10.4 || 11.*.*@dev",
+                "typo3/cms-seo": "^10.4 || 11.*.*@dev",
+                "typo3fluid/fluid": "^2.5.2"
+            },
+            "require-dev": {
+                "bk2k/demo-package": "@dev",
+                "bk2k/extension-helper": "^1.0",
+                "friendsofphp/php-cs-fixer": "^3.0.0",
+                "overtrue/phplint": "^2.3.5",
+                "phpstan/phpstan": "^0.12.87",
+                "phpstan/phpstan-deprecation-rules": "^0.12.6",
+                "phpstan/phpstan-phpunit": "^0.12.19",
+                "phpstan/phpstan-strict-rules": "^0.12.9",
+                "saschaegerer/phpstan-typo3": "^0.13.3",
+                "typo3/cms-felogin": "^10.4 || 11.*.*@dev",
+                "typo3/cms-form": "^10.4 || 11.*.*@dev",
+                "typo3/cms-indexed-search": "^10.4 || 11.*.*@dev",
+                "typo3/cms-info": "^10.4 || 11.*.*@dev",
+                "typo3/cms-lowlevel": "^10.4 || 11.*.*@dev",
+                "typo3/cms-tstemplate": "^10.4 || 11.*.*@dev",
+                "typo3/cms-workspaces": "^10.4 || 11.*.*@dev",
+                "typo3/testing-framework": "^5.0 || ^6.4"
+            },
+            "default-branch": true,
+            "type": "typo3-cms-extension",
+            "extra": {
+                "typo3/cms": {
+                    "extension-key": "bootstrap_package",
+                    "web-dir": ".build/web",
+                    "app-dir": ".build"
+                },
+                "branch-alias": {
+                    "dev-master": "12.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BK2K\\BootstrapPackage\\": "Classes"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Kott",
+                    "email": "info@bk2k.info",
+                    "homepage": "http://www.bk2k.info/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Bootstrap Package delivers a full configured frontend theme for TYPO3, based on the Bootstrap CSS Framework.",
+            "homepage": "https://github.com/benjaminkott/bootstrap_package",
+            "keywords": [
+                "TYPO3 CMS",
+                "bootstrap",
+                "frontend",
+                "introduction",
+                "responsive",
+                "sitepackage",
+                "theme",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/benjaminkott/bootstrap_package/issues",
+                "source": "https://github.com/benjaminkott/bootstrap_package/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/benjaminkott",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-06-10T07:17:25+00:00"
+        },
+        {
             "name": "phpdocumentor/reflection-common",
             "version": "2.2.0",
             "source": {
@@ -4624,6 +4731,79 @@
                 "source": "https://github.com/phpDocumentor/TypeResolver/tree/1.4.0"
             },
             "time": "2020-09-17T18:55:26+00:00"
+        },
+        {
+            "name": "scssphp/scssphp",
+            "version": "v1.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scssphp/scssphp.git",
+                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scssphp/scssphp/zipball/6fe16f169f55f5e793474fb210aac0a4481619e5",
+                "reference": "6fe16f169f55f5e793474fb210aac0a4481619e5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.4",
+                "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.3 || ^9.4",
+                "sass/sass-spec": "*",
+                "squizlabs/php_codesniffer": "~3.5",
+                "symfony/phpunit-bridge": "^5.1",
+                "twbs/bootstrap": "~5.0",
+                "twbs/bootstrap4": "4.6.0",
+                "zurb/foundation": "~6.5"
+            },
+            "suggest": {
+                "ext-iconv": "Can be used as fallback when ext-mbstring is not available",
+                "ext-mbstring": "For best performance, mbstring should be installed as it is faster than ext-iconv"
+            },
+            "bin": [
+                "bin/pscss"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ScssPhp\\ScssPhp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "homepage": "https://github.com/robocoder"
+                },
+                {
+                    "name": "Cédric Morin",
+                    "email": "cedric@yterium.com",
+                    "homepage": "https://github.com/Cerdic"
+                }
+            ],
+            "description": "scssphp is a compiler for SCSS written in PHP.",
+            "homepage": "http://scssphp.github.io/scssphp/",
+            "keywords": [
+                "css",
+                "less",
+                "sass",
+                "scss",
+                "stylesheet"
+            ],
+            "support": {
+                "issues": "https://github.com/scssphp/scssphp/issues",
+                "source": "https://github.com/scssphp/scssphp/tree/v1.5.2"
+            },
+            "time": "2021-05-18T00:05:58+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -5788,6 +5968,65 @@
             "time": "2021-05-04T07:37:52+00:00"
         },
         {
+            "name": "typo3/cms-lowlevel",
+            "version": "v11.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TYPO3-CMS/lowlevel.git",
+                "reference": "ded5d83f584eaffdc194b7d6082eb84a6a4206fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TYPO3-CMS/lowlevel/zipball/ded5d83f584eaffdc194b7d6082eb84a6a4206fc",
+                "reference": "ded5d83f584eaffdc194b7d6082eb84a6a4206fc",
+                "shasum": ""
+            },
+            "require": {
+                "typo3/cms-core": "11.2.0"
+            },
+            "conflict": {
+                "typo3/cms": "*"
+            },
+            "type": "typo3-cms-framework",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.2.x-dev"
+                },
+                "typo3/cms": {
+                    "Package": {
+                        "serviceProvider": "TYPO3\\CMS\\Lowlevel\\ServiceProvider",
+                        "partOfFactoryDefault": true
+                    },
+                    "extension-key": "lowlevel"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TYPO3\\CMS\\Lowlevel\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TYPO3 Core Team",
+                    "email": "typo3cms@typo3.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Enables the 'Config' and 'DB Check' modules for technical analysis of the system. This includes raw database search, checking relations, counting pages and records etc.",
+            "homepage": "https://typo3.org",
+            "support": {
+                "chat": "https://typo3.org/help",
+                "docs": "https://docs.typo3.org",
+                "issues": "https://forge.typo3.org",
+                "source": "https://github.com/TYPO3/TYPO3.CMS"
+            },
+            "time": "2021-05-04T07:37:52+00:00"
+        },
+        {
             "name": "typo3/cms-recordlist",
             "version": "v11.2.0",
             "source": {
@@ -6320,7 +6559,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "bk2k/bootstrap-package": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

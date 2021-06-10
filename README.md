@@ -65,6 +65,8 @@ The selected images are accessible as **FileReference** via ```{files}``` marker
 
 ## Contribute
 
-Feel free to contribute! [Bitbucket-Repository](https://bitbucket.org/blueways/bw_static_template)
+This extension was made by Maik Schneider from [blueways](https://www.blueways.de/). Feel free to contribute! 
+
+* [Bitbucket-Repository](https://bitbucket.org/blueways/bw_static_template)
 
 

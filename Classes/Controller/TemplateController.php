@@ -17,12 +17,12 @@ class TemplateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $fileItemUids = $this->settings['files'];
         $fileItemUids = explode(',', $fileItemUids);
 
-        if (!empty($fileItemUids) && sizeof($fileItemUids) && $fileItemUids[0] !== "") {
+        if (!empty($fileItemUids) && sizeof($fileItemUids) && $fileItemUids[0] !== "" && $fileItemUids[0] !== "0") {
 
             /** @var \TYPO3\CMS\\Core\Resource\ResourceFactory $resourceFactory */
             $resourceFactory = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
 
-            for ($i = 0; $i < sizeof($fileItemUids); $i++) {
+            for ($i = 0; $i < count($fileItemUids); $i++) {
                 $itemUid = $fileItemUids[$i];
                 $fileReference = $resourceFactory->getFileReferenceObject($itemUid);
                 array_push($files, $fileReference);

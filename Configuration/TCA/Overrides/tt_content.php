@@ -1,8 +1,8 @@
 <?php
 
 $typo3Version = TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionStringToArray(TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version());
-$extensionName = $typo3Version['version_main'] > 10 ? 'BwStaticTemplate' : 'Blueways.BwStaticTemplate';
-$flexformName = $typo3Version['version_main'] > 10 ? 'Pi1_v11.xml' : 'Pi1.xml';
+$extensionName = $typo3Version['version_main'] >= 10 ? 'BwStaticTemplate' : 'Blueways.BwStaticTemplate';
+$flexformName = $typo3Version['version_main'] >= 10 ? 'Pi1_v11.xml' : 'Pi1.xml';
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     $extensionName,

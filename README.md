@@ -3,7 +3,7 @@
 Frontend plugin that renders fluid templates. Inject JSON data or FAL files into the templates. Perfect for fast
 template development with example data.
 
-![Plugin in the TYPO3 Backend](Documentation/Images/Example.png)
+![Plugin in the TYPO3 Backend](Documentation/Images/Preview.jpg)
 
 ## Install
 
@@ -13,10 +13,12 @@ template development with example data.
 composer require blueways/bw-static-template
 ```
 
-* include static typoscript template
-* include static pageTS template
+* include static TypoScript template
+* include static PageTS template
 
 ## Usage
+
+![Plugin in the TYPO3 Backend](Documentation/Images/Example.png)
 
 ### Add plugin to page
 
@@ -60,12 +62,16 @@ The selected images are accessible as **FileReference** via ```{files}``` marker
 <f:for each="{files}" as="file">
 	<f:image image="{file}" />
 </f:for>
-			 
+
 ```
+
+### Advanced: Use TypoScript
+
+By default, the whole TypoScript configuration is injected into the rendered template. You can access it via `{typoscript.plugin.tx_bwstatictemplate_pi1.settings.yourCustomSetting}`.
 
 ## Contribute
 
-This extension was made by Maik Schneider from [blueways](https://www.blueways.de/). Feel free to contribute! 
+This extension was made by Maik Schneider from [blueways](https://www.blueways.de/). Feel free to contribute!
 
 * [Bitbucket-Repository](https://bitbucket.org/blueways/bw_static_template)
 

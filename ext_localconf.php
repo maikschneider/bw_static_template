@@ -20,3 +20,6 @@ $extensionName = $typo3Version['version_main'] >= 10 ? 'BwStaticTemplate' : 'Blu
 $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['static'] = [
     'Blueways\BwStaticTemplate\ViewHelpers',
 ];
+
+// register update wizard
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['bwStaticTemplate_pluginUpdateWizard'] = \Blueways\BwStaticTemplate\Updates\PluginUpdateWizard::class;

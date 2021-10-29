@@ -8,3 +8,37 @@ plugin.tx_bwstatictemplate_pi1 {
 		layoutRootPaths.1 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
 	}
 }
+
+lib.contentElement {
+	templateRootPaths.310 = EXT:bw_static_template/Resources/Private/Templates/
+	templateRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.templateRootPath}
+	partialRootPaths.310 = EXT:bw_static_template/Resources/Private/Partials/
+	partialRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.partialRootPath}
+	layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
+	layoutRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
+}
+
+tt_content {
+	bw_static_template =< lib.contentElement
+	bw_static_template {
+		templateName =
+		file = TEXT
+		file.data = field:header
+#		file.stdWrap.value = field:header
+#		file.stdWrap.value.stdWrap.substring = 0,3
+#		file.stdWrap.if.equals = EXT
+#		file.stdWrap.if.negate = 1
+
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			10 {
+				references.fieldName = assets
+			}
+
+			20 = Blueways\BwStaticTemplate\DataProcessing\JsonProcessor
+			20 {
+				references.fieldName = assets
+			}
+		}
+	}
+}

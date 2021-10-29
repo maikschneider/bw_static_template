@@ -9,11 +9,13 @@
   ],
   "require": {
     "blueways/bw-jsoneditor": "^1.0",
-    "typo3/cms-core": "^9.0 || ^10.0 || ^11.0"
+    "typo3/cms-core": "^9.0 || ^10.0 || ^11.0",
+    "ext-json": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
-    "typo3/cms-base-distribution": "^11.0",
-    "typo3/cms-lowlevel": "^11.0",
+    "typo3/cms-base-distribution": "^10.0",
+    "typo3/cms-lowlevel": "^10.0",
     "bk2k/bootstrap-package": "12.0.x-dev"
   },
   "extra": {

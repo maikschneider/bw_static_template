@@ -21,6 +21,24 @@ lib.contentElement {
 tt_content {
 	bw_static_template =< lib.contentElement
 	bw_static_template {
-		templateName = Bla
+		templateName =
+		file = TEXT
+		file.data = field:header
+#		file.stdWrap.value = field:header
+#		file.stdWrap.value.stdWrap.substring = 0,3
+#		file.stdWrap.if.equals = EXT
+#		file.stdWrap.if.negate = 1
+
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			10 {
+				references.fieldName = assets
+			}
+
+			20 = Blueways\BwStaticTemplate\DataProcessing\JsonProcessor
+			20 {
+				references.fieldName = assets
+			}
+		}
 	}
 }

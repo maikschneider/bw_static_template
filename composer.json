@@ -10,7 +10,8 @@
   "require": {
     "blueways/bw-jsoneditor": "^1.0",
     "typo3/cms-core": "^9.0 || ^10.0 || ^11.0",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-pdo": "*"
   },
   "require-dev": {
     "typo3/cms-base-distribution": "^10.0",

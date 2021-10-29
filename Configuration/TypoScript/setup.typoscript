@@ -8,3 +8,19 @@ plugin.tx_bwstatictemplate_pi1 {
 		layoutRootPaths.1 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
 	}
 }
+
+lib.contentElement {
+	templateRootPaths.310 = EXT:bw_static_template/Resources/Private/Templates/
+	templateRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.templateRootPath}
+	partialRootPaths.310 = EXT:bw_static_template/Resources/Private/Partials/
+	partialRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.partialRootPath}
+	layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
+	layoutRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
+}
+
+tt_content {
+	bw_static_template =< lib.contentElement
+	bw_static_template {
+		templateName = Bla
+	}
+}

@@ -12,6 +12,12 @@
 			<trans-unit id="pi1.wizard.description">
 				<source>Render a static fluid template</source>
 			</trans-unit>
+			<trans-unit id="template">
+				<source>Template</source>
+			</trans-unit>
+			<trans-unit id="json">
+				<source>JSON</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

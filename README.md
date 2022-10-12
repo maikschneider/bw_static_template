@@ -136,8 +136,8 @@ $ typo3cms upgrade:run bwStaticTemplate_pluginUpdateWizard
 
 ## Contribute
 
-This extension was made by Maik Schneider from [blueways](https://www.blueways.de/). Feel free to contribute!
+This extension was made by Maik Schneider: Feel free to contribute!
 
-* [Bitbucket-Repository](https://bitbucket.org/blueways/bw_static_template)
+* [Github-Repository](https://github.com/maikschneider/bw_static_template)
 
-
+Thanks at [blueways](https://www.blueways.de/) and [XIMA](https://www.xima.de/)!

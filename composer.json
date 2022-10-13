@@ -28,11 +28,6 @@
     }
   },
   "config": {
-    "bin-dir": "bin",
-    "vendor-dir": "vendor",
-    "platform": {
-      "php": "7.4"
-    },
     "allow-plugins": {
       "typo3/cms-composer-installers": true,
       "typo3/class-alias-loader": true

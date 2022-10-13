@@ -2,25 +2,22 @@
 
 namespace Blueways\BwStaticTemplate\Controller;
 
+use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Core\Resource\ResourceFactory;
 
 class TemplateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     public function showAction(): void
     {
-
         $files = [];
         $fileItemUids = $this->settings['files'];
         $fileItemUids = explode(',', $fileItemUids);
 
-        if (!empty($fileItemUids) && count($fileItemUids) && $fileItemUids[0] !== "" && $fileItemUids[0] !== "0") {
-
+        if (!empty($fileItemUids) && count($fileItemUids) && $fileItemUids[0] !== '' && $fileItemUids[0] !== '0') {
             $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
 
-            foreach($fileItemUids as $itemUid) {
+            foreach ($fileItemUids as $itemUid) {
                 $fileReference = $resourceFactory->getFileReferenceObject($itemUid);
                 $files[] = $fileReference;
             }

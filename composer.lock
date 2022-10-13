@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "03a27a73cbb2d8e054decb244bf33b01",
+    "content-hash": "2fde52d18e61479f600ad96eb87540f4",
     "packages": [
         {
             "name": "blueways/bw-jsoneditor",
@@ -7632,8 +7632,5 @@
         "ext-pdo": "*"
     },
     "platform-dev": [],
-    "platform-overrides": {
-        "php": "7.4"
-    },
     "plugin-api-version": "2.3.0"
 }

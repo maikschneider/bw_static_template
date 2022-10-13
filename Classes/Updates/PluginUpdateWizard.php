@@ -4,12 +4,10 @@ namespace Blueways\BwStaticTemplate\Updates;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Install\Updates\RepeatableInterface;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 
 class PluginUpdateWizard implements UpgradeWizardInterface
 {
-
     public function getIdentifier(): string
     {
         return 'bwStaticTemplate_pluginUpdateWizard';
@@ -64,16 +62,26 @@ class PluginUpdateWizard implements UpgradeWizardInterface
         $plugins = $queryBuilder
             ->select('t.uid', 't.pi_flexform', 'r.uid as ruid')
             ->from('tt_content', 't')
-            ->innerJoin('t', 'sys_file_reference', 'r',
-                $queryBuilder->expr()->eq('r.uid_foreign', $queryBuilder->quoteIdentifier('t.uid')))
+            ->innerJoin(
+                't',
+                'sys_file_reference',
+                'r',
+                $queryBuilder->expr()->eq('r.uid_foreign', $queryBuilder->quoteIdentifier('t.uid'))
+            )
             ->where(
                 $queryBuilder->expr()->andX(
-                    $queryBuilder->expr()->eq('t.list_type',
-                        $queryBuilder->createNamedParameter('bwstatictemplate_pi1', \PDO::PARAM_STR)),
-                    $queryBuilder->expr()->eq('r.tablenames',
-                        $queryBuilder->createNamedParameter('tt_content', \PDO::PARAM_STR)),
-                    $queryBuilder->expr()->eq('r.fieldname',
-                        $queryBuilder->createNamedParameter('fal', \PDO::PARAM_STR))
+                    $queryBuilder->expr()->eq(
+                        't.list_type',
+                        $queryBuilder->createNamedParameter('bwstatictemplate_pi1', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->eq(
+                        'r.tablenames',
+                        $queryBuilder->createNamedParameter('tt_content', \PDO::PARAM_STR)
+                    ),
+                    $queryBuilder->expr()->eq(
+                        'r.fieldname',
+                        $queryBuilder->createNamedParameter('fal', \PDO::PARAM_STR)
+                    )
                 )
             )
             ->execute()

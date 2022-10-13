@@ -7,7 +7,6 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 class JsonProcessor implements DataProcessorInterface
 {
-
     /**
      * Process data of a record to resolve File objects to the view
      *

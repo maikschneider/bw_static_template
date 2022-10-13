@@ -7,3 +7,4 @@ var
 bin
 vendor
 Documentation-*
+config/sites

@@ -2,7 +2,6 @@
   "name": "blueways/bw-static-template",
   "type": "typo3-cms-extension",
   "description": "TYPO3 extension that adds a frontend plugin for rendering static fluid templates. Inject JSON and FAL data into the templates.",
-  "homepage": "https://blueways.de",
   "license": "MIT",
   "keywords": [
     "TYPO3"

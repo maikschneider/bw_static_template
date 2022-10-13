@@ -16,7 +16,9 @@
   "require-dev": {
     "typo3/cms-base-distribution": "^10.0",
     "typo3/cms-lowlevel": "^10.0",
-    "bk2k/bootstrap-package": "12.0.x-dev"
+    "bk2k/bootstrap-package": "12.0.x-dev",
+    "friendsofphp/php-cs-fixer": "^3.12",
+    "saschaegerer/phpstan-typo3": "^1.1"
   },
   "extra": {
     "typo3/cms": {
@@ -30,11 +32,22 @@
     "vendor-dir": "vendor",
     "platform": {
       "php": "7.4"
+    },
+    "allow-plugins": {
+      "typo3/cms-composer-installers": true,
+      "typo3/class-alias-loader": true
     }
   },
   "autoload": {
     "psr-4": {
       "Blueways\\BwStaticTemplate\\": "Classes/"
     }
+  },
+  "scripts": {
+    "php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
+    "php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
+    "ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+    "ci:php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix --dry-run -v --show-progress=dots",
+    "ci:php:stan": "php vendor/bin/phpstan --no-progress"
   }
 }

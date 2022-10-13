@@ -1,0 +1,121 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:setTemplatePathAndFilename\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/TemplateController.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Controller\\\\TemplateController\\:\\:replaceKeyDots\\(\\) has parameter \\$arr with no type specified\\.$#"
+			count: 1
+			path: Classes/Controller/TemplateController.php
+
+		-
+			message: "#^Parameter \\#1 \\$uid of method TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ResourceFactory\\:\\:getFileReferenceObject\\(\\) expects int, string given\\.$#"
+			count: 1
+			path: Classes/Controller/TemplateController.php
+
+		-
+			message: "#^Right side of && is always true\\.$#"
+			count: 1
+			path: Classes/Controller/TemplateController.php
+
+		-
+			message: "#^Variable \\$fileItemUids in empty\\(\\) always exists and is not falsy\\.$#"
+			count: 1
+			path: Classes/Controller/TemplateController.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\DataProcessing\\\\JsonProcessor\\:\\:process\\(\\) has parameter \\$contentObjectConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/JsonProcessor.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\DataProcessing\\\\JsonProcessor\\:\\:process\\(\\) has parameter \\$processedData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/JsonProcessor.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\DataProcessing\\\\JsonProcessor\\:\\:process\\(\\) has parameter \\$processorConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/JsonProcessor.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\DataProcessing\\\\JsonProcessor\\:\\:process\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/JsonProcessor.php
+
+		-
+			message: "#^Cannot access offset 'data' on mixed\\.$#"
+			count: 5
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'lDEF' on mixed\\.$#"
+			count: 3
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'pi_flexform' on mixed\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'ruid' on mixed\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'sDEF' on mixed\\.$#"
+			count: 4
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'settings\\.json' on mixed\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'settings…' on mixed\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'uid' on mixed\\.$#"
+			count: 8
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot access offset 'vDEF' on mixed\\.$#"
+			count: 2
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Updates\\\\PluginUpdateWizard\\:\\:executeUpdate\\(\\) should return bool but returns int\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Updates\\\\PluginUpdateWizard\\:\\:getTtContentUpdates\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Parameter \\#1 \\$string of static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:xml2array\\(\\) expects string, mixed given\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Parameter \\#2 \\$value of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:set\\(\\) expects string, null given\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php
+
+		-
+			message: "#^Variable \\$plugins on left side of \\?\\? always exists and is not nullable\\.$#"
+			count: 1
+			path: Classes/Updates/PluginUpdateWizard.php

@@ -24,5 +24,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Maik Schneider',
     'author_email' => 'maik.schneider@xima.de',
     'author_company' => 'XIMA MEDIA GmbH',
-    'version' => '2.0.1',
+    'version' => '2.0.2',
 ];

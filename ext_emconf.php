@@ -1,4 +1,5 @@
 <?php
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Static Template',
     'description' => 'Frontend plugin that renders fluid templates. Inject JSON data or FAL files into the templates. Perfect for fast template development with example data.',
@@ -6,14 +7,14 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'typo3' => '8.7.0-11.99.99',
-            'bw_jsoneditor' => '1.0.0-1.99.99'
+            'bw_jsoneditor' => '1.0.0-1.99.99',
         ],
         'conflicts' => [
         ],
     ],
     'autoload' => [
         'psr-4' => [
-            'Blueways\\BwStaticTemplate\\' => 'Classes'
+            'Blueways\\BwStaticTemplate\\' => 'Classes',
         ],
     ],
     'state' => 'stable',
@@ -21,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
     'author' => 'Maik Schneider',
-    'author_email' => 'm.schneider@blueways.de',
-    'author_company' => 'blueways',
-    'version' => '2.0.0',
+    'author_email' => 'maik.schneider@xima.de',
+    'author_company' => 'XIMA MEDIA GmbH',
+    'version' => '2.0.1',
 ];

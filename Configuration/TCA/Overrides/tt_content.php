@@ -41,8 +41,8 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
         'header' => [
             'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',
             'config' => [
-                'eval' => 'trim,required'
-            ]
+                'eval' => 'trim,required',
+            ],
         ],
         'bodytext' => [
             'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
@@ -50,5 +50,5 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
                 'renderType' => 'jsonForm',
             ],
         ],
-    ]
+    ],
 ];

@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
     'author' => 'Maik Schneider',
-    'author_email' => 'm.schneider@blueways.de',
-    'author_company' => 'blueways',
-    'version' => '2.0.0',
+    'author_email' => 'maik.schneider@xima.de',
+    'author_company' => 'XIMA MEDIA GmbH',
+    'version' => '2.0.24',
 ];

@@ -172,4 +172,4 @@ Feel free to contribute!
 
 * `Github-Repository <https://github.com/maikschneider/bw_static_template/>`__
 
-Thanks at `blueways <https://www.blueways.de/>`__ and `XIMA <https://www.xima.de/>`__!
+Thanks to `blueways <https://www.blueways.de/>`__ and `XIMA <https://www.xima.de/>`__!

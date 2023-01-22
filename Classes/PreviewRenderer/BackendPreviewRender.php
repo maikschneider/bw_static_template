@@ -86,7 +86,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
             }
             $html .= '</table>';
         } else {
-            $html .= $value;
+            $html .= is_bool($value) ? var_export($value, 1) : $value;
         }
         $html .= '</td>';
         $html .= '</tr>';

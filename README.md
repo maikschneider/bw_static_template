@@ -124,16 +124,6 @@ tt_content.bw_static_template {
 }
 ```
 
-## Upgrade from 1.x to 2.x
-
-The type of content element moved from plugin to custom content element. Plugins added to your page will still work, but cannot be added anymore.
-
-There is an Update Wizard that migrates all of your plugins at once.
-
-```
-$ typo3cms upgrade:run bwStaticTemplate_pluginUpdateWizard
-```
-
 ## Contribute
 
 This extension was made by Maik Schneider: Feel free to contribute!

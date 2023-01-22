@@ -21,13 +21,12 @@ lib.contentElement {
 tt_content {
 	bw_static_template =< lib.contentElement
 	bw_static_template {
-		templateName =
-		file = TEXT
-		file.data = field:header
-#		file.stdWrap.value = field:header
-#		file.stdWrap.value.stdWrap.substring = 0,3
-#		file.stdWrap.if.equals = EXT
-#		file.stdWrap.if.negate = 1
+
+		templateName.data = field:header
+		templateName.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateName
+
+		templateRootPaths.9999999999.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateRootPath
+		templateRootPaths.9999999999.data = field:header
 
 		dataProcessing {
 			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor

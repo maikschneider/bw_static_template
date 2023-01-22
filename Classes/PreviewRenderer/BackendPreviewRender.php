@@ -68,6 +68,10 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
     }
 
+    /**
+     * @param mixed $key
+     * @param mixed $value
+     */
     protected static function getTableRow($key, $value): string
     {
         $html = '<tr>';
@@ -105,7 +109,10 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
     }
 
-    protected function checkArrayDepthOfNextLevel($value, &$maxDepth)
+    /**
+     * @param mixed $value
+     */
+    protected function checkArrayDepthOfNextLevel($value, int &$maxDepth): void
     {
         if (is_array($value)) {
             foreach ($value as $key2 => $deeperValue) {

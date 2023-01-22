@@ -24,33 +24,3 @@ parameters:
 			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 2
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has parameter \\$maxDepth with no type specified\\.$#"
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:getTableRow\\(\\) has parameter \\$key with no type specified\\.$#"
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:getTableRow\\(\\) has parameter \\$value with no type specified\\.$#"
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
-			message: "#^Ternary operator condition is always true\\.$#"
-			count: 2
-			path: Classes/UserFunc/ContentElementUserFunc.php

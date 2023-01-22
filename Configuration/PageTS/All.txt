@@ -9,6 +9,6 @@ mod.wizards.newContentElement.wizardItems.special {
 			}
 		}
 	}
-	show = *
+	show := addToList(bwstatictemplate_pi1)
 }
 

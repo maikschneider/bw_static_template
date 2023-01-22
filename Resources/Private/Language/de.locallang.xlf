@@ -7,18 +7,22 @@
 		</header>
 		<body>
 			<trans-unit id="pi1.wizard.title">
-				<source>Static Template</source>
 				<target>Statisches Template</target>
 			</trans-unit>
 			<trans-unit id="pi1.wizard.description">
-				<source>Render a static fluid template</source>
-				<source>Zeigt ein Fluid-Template an</source>
+				<target>Zeigt ein Fluid-Template an</target>
 			</trans-unit>
 			<trans-unit id="template">
-				<source>Template</source>
+				<target>Template</target>
 			</trans-unit>
 			<trans-unit id="json">
-				<source>JSON</source>
+				<target>JSON</target>
+			</trans-unit>
+			<trans-unit id="preview.jsonError">
+				<target>Error decoding content: No valid JSON data.</target>
+			</trans-unit>
+			<trans-unit id="preview.more">
+				<target>Zeige mehr</target>
 			</trans-unit>
 		</body>
 	</file>

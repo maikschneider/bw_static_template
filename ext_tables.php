@@ -1,7 +1,5 @@
 <?php
 
-defined('TYPO3_MODE') || die();
-
 call_user_func(
     function () {
         // Register icon
@@ -24,5 +22,8 @@ call_user_func(
             'html',
             'after'
         );
+
+        // register css
+        $GLOBALS['TBE_STYLES']['skins']['bw_static_template']['stylesheetDirectories'][] = 'EXT:bw_static_template/Resources/Public/Css/';
     }
 );

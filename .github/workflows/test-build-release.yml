@@ -48,5 +48,7 @@ jobs:
     uses: maikschneider/reusable-workflows/.github/workflows/release-typo3-extension.yml@main
     secrets:
       teams-webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL }}
+      typo3-api-token: ${{ secrets.TYPO3_API_TOKEN }}
     with:
       base-branch: master
+      publish-ter: true

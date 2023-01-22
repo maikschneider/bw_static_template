@@ -36,3 +36,6 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
         ],
     ],
 ];
+
+$GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = \Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender::class;
+$GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['bw_static_template'] = 'tx_bwstatictemplate_pi1';

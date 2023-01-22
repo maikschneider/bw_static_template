@@ -1,31 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:setTemplatePathAndFilename\\(\\)\\.$#"
-			count: 1
-			path: Classes/Controller/TemplateController.php
-
-		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Controller\\\\TemplateController\\:\\:replaceKeyDots\\(\\) has parameter \\$arr with no type specified\\.$#"
-			count: 1
-			path: Classes/Controller/TemplateController.php
-
-		-
-			message: "#^Parameter \\#1 \\$uid of method TYPO3\\\\CMS\\\\Core\\\\Resource\\\\ResourceFactory\\:\\:getFileReferenceObject\\(\\) expects int, string given\\.$#"
-			count: 1
-			path: Classes/Controller/TemplateController.php
-
-		-
-			message: "#^Right side of && is always true\\.$#"
-			count: 1
-			path: Classes/Controller/TemplateController.php
-
-		-
-			message: "#^Variable \\$fileItemUids in empty\\(\\) always exists and is not falsy\\.$#"
-			count: 1
-			path: Classes/Controller/TemplateController.php
-
-		-
 			message: "#^Method Blueways\\\\BwStaticTemplate\\\\DataProcessing\\\\JsonProcessor\\:\\:process\\(\\) has parameter \\$contentObjectConfiguration with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/DataProcessing/JsonProcessor.php
@@ -46,76 +21,36 @@ parameters:
 			path: Classes/DataProcessing/JsonProcessor.php
 
 		-
-			message: "#^Cannot access offset 'data' on mixed\\.$#"
-			count: 5
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'lDEF' on mixed\\.$#"
-			count: 3
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'pi_flexform' on mixed\\.$#"
-			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'ruid' on mixed\\.$#"
-			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'sDEF' on mixed\\.$#"
-			count: 4
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'settings\\.json' on mixed\\.$#"
-			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'settings…' on mixed\\.$#"
-			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'uid' on mixed\\.$#"
-			count: 8
-			path: Classes/Updates/PluginUpdateWizard.php
-
-		-
-			message: "#^Cannot access offset 'vDEF' on mixed\\.$#"
+			message: "#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\\.$#"
 			count: 2
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has no return type specified\\.$#"
 			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Updates\\\\PluginUpdateWizard\\:\\:executeUpdate\\(\\) should return bool but returns int\\.$#"
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has parameter \\$maxDepth with no type specified\\.$#"
 			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Method Blueways\\\\BwStaticTemplate\\\\Updates\\\\PluginUpdateWizard\\:\\:getTtContentUpdates\\(\\) has no return type specified\\.$#"
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:checkArrayDepthOfNextLevel\\(\\) has parameter \\$value with no type specified\\.$#"
 			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Parameter \\#1 \\$string of static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:xml2array\\(\\) expects string, mixed given\\.$#"
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:getTableRow\\(\\) has parameter \\$key with no type specified\\.$#"
 			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:set\\(\\) expects string, null given\\.$#"
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:getTableRow\\(\\) has parameter \\$value with no type specified\\.$#"
 			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Variable \\$plugins on left side of \\?\\? always exists and is not nullable\\.$#"
-			count: 1
-			path: Classes/Updates/PluginUpdateWizard.php
+			message: "#^Ternary operator condition is always true\\.$#"
+			count: 2
+			path: Classes/UserFunc/ContentElementUserFunc.php

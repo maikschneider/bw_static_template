@@ -11,14 +11,12 @@ use TYPO3\CMS\Core\Utility\MathUtility;
 
 class BackendPreviewRender extends StandardContentPreviewRenderer
 {
-
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $content = '';
         $row = $item->getRecord();
 
         if ($row['bodytext']) {
-
             $table = $this->getJsonAsTable($row['bodytext']);
             $jsonDepth = $this->getJsonDepth($row['bodytext']);
 
@@ -36,8 +34,18 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
 
         if ($row['assets']) {
-            $assets = BackendUtility::thumbCode($row, 'tt_content', 'assets', '', '', null, 0,
-                '', '', false);
+            $assets = BackendUtility::thumbCode(
+                $row,
+                'tt_content',
+                'assets',
+                '',
+                '',
+                null,
+                0,
+                '',
+                '',
+                false
+            );
             $content .= $this->linkEditContent($assets, $row);
         }
 
@@ -113,5 +121,4 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     {
         return $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
     }
-
 }

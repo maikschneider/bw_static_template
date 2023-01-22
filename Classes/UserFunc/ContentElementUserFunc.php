@@ -22,5 +22,4 @@ class ContentElementUserFunc
         }
         return $content;
     }
-
 }

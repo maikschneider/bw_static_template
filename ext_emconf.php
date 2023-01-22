@@ -6,8 +6,8 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'templates',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-11.99.99',
-            'bw_jsoneditor' => '1.0.0-1.99.99',
+            'typo3' => '8.7.0-12.99.99',
+            'bw_jsoneditor' => '1.1.0-1.99.99',
         ],
         'conflicts' => [
         ],

@@ -2,7 +2,7 @@ name: bw-static-template
 type: typo3
 docroot: public
 php_version: "8.1"
-webserver_type: nginx-fpm
+webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
 xdebug_enabled: false
@@ -15,7 +15,8 @@ nfs_mount_enabled: false
 mutagen_enabled: false
 use_dns_when_possible: true
 composer_version: "2"
-web_environment: []
+web_environment:
+  - TYPO3_CONTEXT=Development/Local
 nodejs_version: "16"
 
 # Key features of ddev's config.yaml:

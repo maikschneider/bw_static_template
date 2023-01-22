@@ -1,4 +1,4 @@
-plugin.tx_bwstatictemplate_pi1 {
+plugin.tx_bwstatictemplate {
 	view {
 		templateRootPath =
 		partialRootPath =

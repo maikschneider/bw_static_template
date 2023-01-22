@@ -1,21 +1,10 @@
-plugin.tx_bwstatictemplate_pi1 {
-	view {
-		templateRootPaths.0 = EXT:bw_static_template/Resources/Private/Templates/
-		templateRootPaths.1 = {$plugin.tx_bwstatictemplate_pi1.view.templateRootPath}
-		partialRootPaths.0 = EXT:bw_static_template/Resources/Private/Partials/
-		partialRootPaths.1 = {$plugin.tx_bwstatictemplate_pi1.view.partialRootPath}
-		layoutRootPaths.0 = EXT:bw_static_template/Resources/Private/Layouts/
-		layoutRootPaths.1 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
-	}
-}
-
 lib.contentElement {
 	templateRootPaths.310 = EXT:bw_static_template/Resources/Private/Templates/
-	templateRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.templateRootPath}
+	templateRootPaths.311 = {$plugin.tx_bwstatictemplate.view.templateRootPath}
 	partialRootPaths.310 = EXT:bw_static_template/Resources/Private/Partials/
-	partialRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.partialRootPath}
+	partialRootPaths.311 = {$plugin.tx_bwstatictemplate.view.partialRootPath}
 	layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
-	layoutRootPaths.311 = {$plugin.tx_bwstatictemplate_pi1.view.layoutRootPath}
+	layoutRootPaths.311 = {$plugin.tx_bwstatictemplate.view.layoutRootPath}
 }
 
 tt_content {

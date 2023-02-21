@@ -17,6 +17,9 @@
 			<trans-unit id="preview.jsonError">
 				<source>Error decoding content: No valid JSON data.</source>
 			</trans-unit>
+			<trans-unit id="preview.jsonFileNotFound">
+				<source>Error loading JSON: Could not find file.</source>
+			</trans-unit>
 			<trans-unit id="preview.more">
 				<source>Full preview</source>
 			</trans-unit>

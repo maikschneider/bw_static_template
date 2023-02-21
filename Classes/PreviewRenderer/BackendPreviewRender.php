@@ -18,12 +18,27 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         $row = $item->getRecord();
 
         if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
-            $filePath = GeneralUtility::getFileAbsFileName($row['tx_bwstatictemplate_file_path']);
-            if (file_exists($filePath)) {
-                $jsonText = file_get_contents($filePath);
-            } else {
-                $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonFileNotFound');
-                $content .= '<div class="callout callout-danger">' . $message . '</div>';
+
+            $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
+
+            if ($isRemoteUrl) {
+                $filePath = $row['tx_bwstatictemplate_file_path'];
+                try {
+                    $jsonText = file_get_contents($filePath);
+                } catch (\Exception $e) {
+                    $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonFileNotFetched');
+                    $content .= '<div class="callout callout-danger">' . $message . '</div>';
+                }
+            }
+
+            if (!$isRemoteUrl) {
+                $filePath = GeneralUtility::getFileAbsFileName($row['tx_bwstatictemplate_file_path']);
+                if (file_exists($filePath)) {
+                    $jsonText = file_get_contents($filePath);
+                } else {
+                    $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonFileNotFound');
+                    $content .= '<div class="callout callout-danger">' . $message . '</div>';
+                }
             }
         }
 

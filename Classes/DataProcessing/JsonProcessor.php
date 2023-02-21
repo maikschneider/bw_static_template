@@ -2,6 +2,7 @@
 
 namespace Blueways\BwStaticTemplate\DataProcessing;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -22,8 +23,19 @@ class JsonProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        if ($processedData['data']['bodytext']) {
-            $json = json_decode($processedData['data']['bodytext'], true);
+        $jsonText = '';
+
+        if (!$processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['bodytext']) {
+            $jsonText = $processedData['data']['bodytext'];
+        }
+
+        if ($processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['tx_bwstatictemplate_file_path']) {
+            $filePath = GeneralUtility::getFileAbsFileName($processedData['data']['tx_bwstatictemplate_file_path']);
+            $jsonText = file_get_contents($filePath);
+        }
+
+        if ($jsonText) {
+            $json = json_decode($jsonText, true);
             if ($json !== null) {
                 $processedData = array_merge($processedData, (array)$json);
             }

@@ -14,12 +14,6 @@
 			<trans-unit id="json">
 				<target>JSON</target>
 			</trans-unit>
-			<trans-unit id="preview.jsonError">
-				<target>Error decoding content: No valid JSON data.</target>
-			</trans-unit>
-			<trans-unit id="preview.jsonFileNotFetched">
-				<target>Error loading JSON: Could not fetch remote file.</target>
-			</trans-unit>
 			<trans-unit id="preview.more">
 				<target>Zeige mehr</target>
 			</trans-unit>

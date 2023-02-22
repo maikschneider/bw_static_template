@@ -9,7 +9,7 @@
 				<source>Render a static fluid template</source>
 			</trans-unit>
 			<trans-unit id="template">
-				<source>Template</source>
+				<source>Frontend template</source>
 			</trans-unit>
 			<trans-unit id="json">
 				<source>JSON</source>
@@ -34,6 +34,12 @@
 			</trans-unit>
 			<trans-unit id="jsonPalette">
 				<source>JSON data</source>
+			</trans-unit>
+			<trans-unit id="beTemplate">
+				<source>Backend preview</source>
+			</trans-unit>
+			<trans-unit id="templatePalette">
+				<source>Templates</source>
 			</trans-unit>
 		</body>
 	</file>

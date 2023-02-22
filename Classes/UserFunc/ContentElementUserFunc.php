@@ -7,9 +7,7 @@ class ContentElementUserFunc
     public function getTemplateRootPath(string $content): string
     {
         if (strpos($content, 'EXT:') === 0) {
-            $pathSegments = explode('/', $content);
-            array_pop($pathSegments);
-            return implode('/', $pathSegments);
+            return self::getTemplateRootPathFromPath($content);
         }
         return '';
     }
@@ -17,9 +15,21 @@ class ContentElementUserFunc
     public function getTemplateName(string $content): string
     {
         if (strpos($content, 'EXT:') === 0) {
-            $pathSegments = explode('/', $content);
-            return array_pop($pathSegments);
+            return self::getTemplateNameFromPath($content);
         }
         return $content;
+    }
+
+    public static function getTemplateRootPathFromPath(string $path): string
+    {
+        $pathSegments = explode('/', $path);
+        array_pop($pathSegments);
+        return implode('/', $pathSegments);
+    }
+
+    public static function getTemplateNameFromPath(string $path): string
+    {
+        $pathSegments = explode('/', $path);
+        return array_pop($pathSegments);
     }
 }

@@ -2,69 +2,47 @@
 
 namespace Blueways\BwStaticTemplate\PreviewRenderer;
 
+use Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class BackendPreviewRender extends StandardContentPreviewRenderer
 {
+    protected string $errorMessage = '';
+
+    protected string $errorTitle = '';
+
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
-        $content = '';
-        $jsonText = '';
+        $html = '';
         $row = $item->getRecord();
 
-        if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
-
-            $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
-
-            if ($isRemoteUrl) {
-                $filePath = $row['tx_bwstatictemplate_file_path'];
-                try {
-                    $jsonText = file_get_contents($filePath);
-                } catch (\Exception $e) {
-                    $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonFileNotFetched');
-                    $content .= '<div class="callout callout-danger">' . $message . '</div>';
-                }
-            }
-
-            if (!$isRemoteUrl) {
-                $filePath = GeneralUtility::getFileAbsFileName($row['tx_bwstatictemplate_file_path']);
-                if (file_exists($filePath)) {
-                    $jsonText = file_get_contents($filePath);
-                } else {
-                    $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonFileNotFound');
-                    $content .= '<div class="callout callout-danger">' . $message . '</div>';
-                }
-            }
+        // custom preview
+        if ($row['tx_bwstatictemplate_be_template']) {
+            $html = $this->renderFluidBackendTemplate($row);
         }
 
-        if (!$row['tx_bwstatictemplate_from_file'] && $row['bodytext']) {
-            $jsonText = $row['bodytext'];
+        // default view
+        if (!$row['tx_bwstatictemplate_be_template']) {
+            $html = $this->renderTablePreview($row);
         }
 
-        if ($jsonText) {
-            $table = $this->getJsonAsTable($jsonText);
-            $jsonDepth = $this->getJsonDepth($jsonText);
-
-            if ($jsonDepth < 10) {
-                $content .= $this->linkEditContent($table, $row);
-            } else {
-                $content .= '<div class="jsonTablePreview jsonTablePreview--hidden" id="jsonTable' . $row['uid'] . '">';
-                $content .= $this->linkEditContent($table, $row);
-                $content .= '</div>';
-                $onClick = 'document.getElementById(\'jsonTable' . $row['uid'] . '\').classList.remove(\'jsonTablePreview--hidden\')';
-                $moreIcon = '<span class="icon icon-size-small icon-state-default"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="m4.464 6.05-.707.707L8 11l4.243-4.243-.707-.707L8 9.586z"/></g></svg></span>';
-                $moreText = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.more');
-                $content .= '<p class="text-center"><button onclick="' . $onClick . '" type="button" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
-            }
+        // error view
+        if ($this->errorMessage) {
+            $html = '<div class="callout callout-danger"><p class="callout-title">' . $this->errorTitle . '</p> ' . $this->errorMessage . '</div>';
         }
 
-        if ($row['assets']) {
-            $assets = BackendUtility::thumbCode(
+        // append images (not in custom preview)
+        if (!$row['tx_bwstatictemplate_be_template'] && $row['assets']) {
+            $html .= BackendUtility::thumbCode(
                 $row,
                 'tt_content',
                 'assets',
@@ -76,26 +54,100 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
                 '',
                 false
             );
-            $content .= $this->linkEditContent($assets, $row);
         }
+
+        return $this->linkEditContent($html, $row);
+    }
+
+    protected function renderTablePreview(array $row): string
+    {
+        $json = $this->getJson($row);
+        $table = $this->getJsonAsTable($json);
+        $jsonDepth = $this->getJsonDepth($json);
+
+        if ($this->errorMessage) {
+            return '';
+        }
+
+        // full table
+        if ($jsonDepth < 10) {
+            return $table;
+        }
+
+        // crop table
+        $content = '<div class="jsonTablePreview jsonTablePreview--hidden" id="jsonTable' . $row['uid'] . '">';
+        $content .= $this->linkEditContent($table, $row);
+        $content .= '</div>';
+        $onClick = 'document.getElementById(\'jsonTable' . $row['uid'] . '\').classList.remove(\'jsonTablePreview--hidden\')';
+        $moreIcon = '<span class="icon icon-size-small icon-state-default"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="m4.464 6.05-.707.707L8 11l4.243-4.243-.707-.707L8 9.586z"/></g></svg></span>';
+        $moreText = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.more');
+        $content .= '<p class="text-center"><button onclick="' . $onClick . '" type="button" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
 
         return $content;
     }
 
-    protected function getJsonAsTable(string $bodytext): string
+    protected function getJson(array $row): array
     {
-        try {
-            $jsonData = json_decode($bodytext, true);
-            $content = '<table class="table table-striped">';
-            foreach ($jsonData as $key => $entry) {
-                $content .= self::getTableRow($key, $entry);
+        $jsonText = '';
+
+        // fetch from file (or remote)
+        if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
+
+            $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
+
+            if ($isRemoteUrl) {
+                $filePath = $row['tx_bwstatictemplate_file_path'];
+                try {
+                    $jsonText = file_get_contents($filePath);
+                } catch (\Exception $e) {
+                    $this->errorTitle = 'Error loading JSON';
+                    $this->errorMessage = 'Could not fetch data from remote "' . $filePath . '"';
+                    return [];
+                }
             }
-            $content .= '</table>';
-            return $content;
-        } catch (\Exception $e) {
-            $message = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.jsonError');
-            return '<div class="callout callout-danger">' . $message . '</div>';
+
+            if (!$isRemoteUrl) {
+                $filePath = GeneralUtility::getFileAbsFileName($row['tx_bwstatictemplate_file_path']);
+                if (file_exists($filePath)) {
+                    $jsonText = file_get_contents($filePath);
+                } else {
+                    $this->errorTitle = 'Error loading JSON';
+                    $this->errorMessage = 'Could not find file "' . $filePath . '"';
+                    return [];
+                }
+            }
         }
+
+        // use from database
+        if (!$row['tx_bwstatictemplate_from_file'] && $row['bodytext']) {
+            $jsonText = $row['bodytext'];
+        }
+
+        // empty json
+        if (!$jsonText) {
+            return [];
+        }
+
+        // decode
+        try {
+            return (array)json_decode($jsonText, true, 512, JSON_THROW_ON_ERROR);
+        } catch (\Exception $e) {
+            $this->errorTitle = 'Error decoding JSON';
+            $this->errorMessage = 'No valid JSON data';
+        }
+
+        return [];
+    }
+
+    protected function getJsonAsTable(array $json): string
+    {
+        $content = '<table class="table table-striped">';
+        foreach ($json as $key => $entry) {
+            $content .= self::getTableRow($key, $entry);
+        }
+        $content .= '</table>';
+
+        return $content;
     }
 
     /**
@@ -129,20 +181,14 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return $html;
     }
 
-    protected function getJsonDepth(string $bodytext): int
+    protected function getJsonDepth(array $json): int
     {
-        try {
-            $jsonData = json_decode($bodytext, true);
-
-            $maxDepth = 0;
-            foreach ($jsonData as $value) {
-                $maxDepth++;
-                $this->checkArrayDepthOfNextLevel($value, $maxDepth);
-            }
-            return $maxDepth;
-        } catch (\Exception $e) {
-            return 0;
+        $maxDepth = 0;
+        foreach ($json as $value) {
+            $maxDepth++;
+            $this->checkArrayDepthOfNextLevel($value, $maxDepth);
         }
+        return $maxDepth;
     }
 
     /**
@@ -163,5 +209,45 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
+    }
+
+    protected function renderFluidBackendTemplate(array $row): string
+    {
+        $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+        $viewSettings = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScript['lib.']['contentElement.']);
+        $templateName = $row['tx_bwstatictemplate_be_template'];
+
+        // set template name and root path from EXT:name/Resources/Private/Templates/Show.html
+        if (strpos($templateName, 'EXT:') === 0) {
+            $templateRootPath = ContentElementUserFunc::getTemplateRootPathFromPath($templateName);
+            $viewSettings['templateRootPaths'][9999999999] = $templateRootPath;
+            $templateName = ContentElementUserFunc::getTemplateNameFromPath($templateName);
+        }
+
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplateRootPaths($viewSettings['templateRootPaths']);
+        $view->setLayoutRootPaths($viewSettings['layoutRootPaths']);
+        $view->setPartialRootPaths($viewSettings['partialRootPaths']);
+        $view->setTemplate($templateName);
+
+        // insert data
+        $json = $this->getJson($row);
+        foreach ($json as $key => $value) {
+            $view->assign($key, $value);
+        }
+
+        if ($this->errorMessage) {
+            return '';
+        }
+
+        try {
+            return $view->render() ?? '';
+        } catch (\Exception $e) {
+            $this->errorTitle = 'Error rendering preview';
+            $this->errorMessage = $e->getMessage();
+        }
+
+        return '';
     }
 }

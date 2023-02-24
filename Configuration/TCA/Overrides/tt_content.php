@@ -1,11 +1,60 @@
 <?php
 
+$tempFields = [
+    'tx_bwstatictemplate_from_file' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:fromFile',
+        'onChange' => 'reload',
+        'config' => [
+            'type' => 'check',
+            'renderType' => 'checkboxToggle',
+            'default' => 0,
+            'items' => [
+                [
+                    0 => '',
+                    'invertStateDisplay' => true,
+                ],
+            ],
+        ],
+    ],
+    'tx_bwstatictemplate_file_path' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:filePath',
+        'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:1',
+        'config' => [
+            'type' => 'input',
+            'size' => 60,
+            'max' => 255,
+            'eval' => 'trim',
+        ],
+    ],
+    'tx_bwstatictemplate_be_template' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:beTemplate',
+        'config' => [
+            'type' => 'input',
+            'size' => 60,
+            'max' => 255,
+            'eval' => 'trim',
+        ],
+    ],
+];
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
+
+$GLOBALS['TCA']['tt_content']['palettes']['json'] = [
+    'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:jsonPalette',
+    'showitem' => 'tx_bwstatictemplate_from_file,--linebreak--,bodytext,--linebreak--,tx_bwstatictemplate_file_path',
+];
+
+$GLOBALS['TCA']['tt_content']['palettes']['templates'] = [
+    'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:templatePalette',
+    'showitem' => 'header,--linebreak--,tx_bwstatictemplate_be_template',
+];
+
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
     'showitem' => '
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
             --palette--;;general,
-            header,
-            bodytext,
+            --palette--;;templates,
+            --palette--;;json,
             assets,
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
             --palette--;;frames,
@@ -30,6 +79,7 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
         ],
         'bodytext' => [
             'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
+            'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
             'config' => [
                 'renderType' => 'jsonForm',
             ],

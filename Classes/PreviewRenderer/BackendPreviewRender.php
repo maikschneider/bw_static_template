@@ -12,6 +12,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class BackendPreviewRender extends StandardContentPreviewRenderer
@@ -59,6 +60,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return $this->linkEditContent($html, $row);
     }
 
+    /**
+     * @param array<string, mixed> $row
+     */
     protected function renderTablePreview(array $row): string
     {
         $json = $this->getJson($row);
@@ -86,13 +90,16 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return $content;
     }
 
+    /**
+     * @param array<string, mixed> $row
+     * @return array<string, mixed>
+     */
     protected function getJson(array $row): array
     {
         $jsonText = '';
 
         // fetch from file (or remote)
         if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
-
             $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
 
             if ($isRemoteUrl) {
@@ -139,6 +146,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return [];
     }
 
+    /**
+     * @param array<string, mixed> $json
+     */
     protected function getJsonAsTable(array $json): string
     {
         $content = '<table class="table table-striped">';
@@ -181,6 +191,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return $html;
     }
 
+    /**
+     * @param array<string, mixed> $json
+     */
     protected function getJsonDepth(array $json): int
     {
         $maxDepth = 0;
@@ -211,6 +224,10 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         return $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
     }
 
+    /**
+     * @param array<string, mixed> $row
+     * @throws InvalidConfigurationTypeException
+     */
     protected function renderFluidBackendTemplate(array $row): string
     {
         $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);

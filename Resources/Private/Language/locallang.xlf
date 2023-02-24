@@ -9,19 +9,10 @@
 				<source>Render a static fluid template</source>
 			</trans-unit>
 			<trans-unit id="template">
-				<source>Template</source>
+				<source>Frontend template</source>
 			</trans-unit>
 			<trans-unit id="json">
 				<source>JSON</source>
-			</trans-unit>
-			<trans-unit id="preview.jsonError">
-				<source>Error decoding content: No valid JSON data.</source>
-			</trans-unit>
-			<trans-unit id="preview.jsonFileNotFound">
-				<source>Error loading JSON: Could not find file.</source>
-			</trans-unit>
-			<trans-unit id="preview.jsonFileNotFetched">
-				<source>Error loading JSON: Could not fetch remote file.</source>
 			</trans-unit>
 			<trans-unit id="preview.more">
 				<source>Full preview</source>
@@ -34,6 +25,12 @@
 			</trans-unit>
 			<trans-unit id="jsonPalette">
 				<source>JSON data</source>
+			</trans-unit>
+			<trans-unit id="beTemplate">
+				<source>Backend preview</source>
+			</trans-unit>
+			<trans-unit id="templatePalette">
+				<source>Templates</source>
 			</trans-unit>
 		</body>
 	</file>

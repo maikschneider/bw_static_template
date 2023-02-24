@@ -9,16 +9,10 @@
 				<target>Zeigt ein Fluid-Template an</target>
 			</trans-unit>
 			<trans-unit id="template">
-				<target>Template</target>
+				<target>Frontend Template</target>
 			</trans-unit>
 			<trans-unit id="json">
 				<target>JSON</target>
-			</trans-unit>
-			<trans-unit id="preview.jsonError">
-				<target>Error decoding content: No valid JSON data.</target>
-			</trans-unit>
-			<trans-unit id="preview.jsonFileNotFetched">
-				<target>Error loading JSON: Could not fetch remote file.</target>
 			</trans-unit>
 			<trans-unit id="preview.more">
 				<target>Zeige mehr</target>
@@ -31,6 +25,12 @@
 			</trans-unit>
 			<trans-unit id="jsonPalette">
 				<target>JSON-Daten</target>
+			</trans-unit>
+			<trans-unit id="beTemplate">
+				<target>Backend Vorschau</target>
+			</trans-unit>
+			<trans-unit id="templatePalette">
+				<target>Templates</target>
 			</trans-unit>
 		</body>
 	</file>

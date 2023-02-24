@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
 	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-23T11:36:30Z">
-		<header>
-			<authorName>Maik Schneider</authorName>
-			<authorEmail>m.schneider@blueways.de</authorEmail>
-		</header>
 		<body>
 			<trans-unit id="pi1.wizard.title">
 				<target>Statisches Template</target>
@@ -21,8 +17,20 @@
 			<trans-unit id="preview.jsonError">
 				<target>Error decoding content: No valid JSON data.</target>
 			</trans-unit>
+			<trans-unit id="preview.jsonFileNotFetched">
+				<target>Error loading JSON: Could not fetch remote file.</target>
+			</trans-unit>
 			<trans-unit id="preview.more">
 				<target>Zeige mehr</target>
+			</trans-unit>
+			<trans-unit id="fromFile">
+				<target>In Datenbank speichern</target>
+			</trans-unit>
+			<trans-unit id="filePath">
+				<target>JSON-Dateipfad</target>
+			</trans-unit>
+			<trans-unit id="jsonPalette">
+				<target>JSON-Daten</target>
 			</trans-unit>
 		</body>
 	</file>

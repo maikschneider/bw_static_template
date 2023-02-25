@@ -44,11 +44,11 @@ Enter valid JSON:
 	"persons": [
 		{
 			"name": "Markus Mustermann",
-			"contactUid": 3
+			"contactPid": 3
 		},
 		{
 			"name": "Paul Werner",
-			"contactUid": 4
+			"contactPid": 4
 		}
 	]
 }
@@ -56,11 +56,11 @@ Enter valid JSON:
 
 Now you can use the given data in your template, e.g.:
 
-```
+```html
 Hello {templateMarker1}!
 
 <f:for each="{persons}" as="person">
-	Say hello to <f:link.page pageUid="{person.contactUid}">{person.name}</f:link.page>
+	Say hello to <f:link.page pageUid="{person.contactPid}">{person.name}</f:link.page>
 </f:for>
 ```
 
@@ -68,7 +68,7 @@ Hello {templateMarker1}!
 
 The selected images are accessible as **FileReference** via ```{files}``` marker.
 
-```
+```html
 <f:for each="{files}" as="file">
 	<f:image image="{file}" />
 </f:for>

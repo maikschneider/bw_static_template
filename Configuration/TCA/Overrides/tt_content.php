@@ -33,6 +33,7 @@ $tempFields = [
             'size' => 60,
             'max' => 255,
             'eval' => 'trim',
+            'placeholder' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:beTemplate.default',
         ],
     ],
 ];

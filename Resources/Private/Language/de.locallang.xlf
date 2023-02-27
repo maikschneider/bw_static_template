@@ -29,6 +29,9 @@
 			<trans-unit id="beTemplate">
 				<target>Backend Vorschau</target>
 			</trans-unit>
+			<trans-unit id="beTemplate.default">
+				<target>Standard</target>
+			</trans-unit>
 			<trans-unit id="templatePalette">
 				<target>Templates</target>
 			</trans-unit>

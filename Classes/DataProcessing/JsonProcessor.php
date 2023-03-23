@@ -41,7 +41,7 @@ class JsonProcessor implements DataProcessorInterface
         if ($jsonText) {
             $json = json_decode($jsonText, true);
             if ($json !== null) {
-                $processedData = array_merge($processedData, (array)$json);
+                $processedData = array_merge_recursive($processedData, (array)$json);
             }
         }
 

@@ -126,8 +126,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
 
         // use from database
-        if (!$row['tx_bwstatictemplate_from_file'] && $row['bodytext']) {
-            $jsonText = $row['bodytext'];
+        if (!$row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_json']) {
+            $jsonText = $row['tx_bwstatictemplate_json'];
         }
 
         // empty json

@@ -25,8 +25,8 @@ class JsonProcessor implements DataProcessorInterface
     ): array {
         $jsonText = '';
 
-        if (!$processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['bodytext']) {
-            $jsonText = $processedData['data']['bodytext'];
+        if (!$processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['tx_bwstatictemplate_json']) {
+            $jsonText = $processedData['data']['tx_bwstatictemplate_json'];
         }
 
         if ($processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['tx_bwstatictemplate_file_path']) {

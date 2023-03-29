@@ -58,13 +58,21 @@ $tempFields = [
             'placeholder' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:beTemplate.default',
         ],
     ],
+    'tx_bwstatictemplate_json' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
+        'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
+        'config' => [
+            'type' => 'input',
+            'renderType' => 'jsonForm',
+        ],
+    ],
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
 
 $GLOBALS['TCA']['tt_content']['palettes']['json'] = [
     'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:jsonPalette',
-    'showitem' => 'tx_bwstatictemplate_from_file,--linebreak--,bodytext,--linebreak--,tx_bwstatictemplate_file_path',
+    'showitem' => 'tx_bwstatictemplate_from_file,--linebreak--,tx_bwstatictemplate_json,--linebreak--,tx_bwstatictemplate_file_path',
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['templates'] = [
@@ -93,15 +101,6 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ',
-    'columnsOverrides' => [
-        'bodytext' => [
-            'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
-            'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
-            'config' => [
-                'renderType' => 'jsonForm',
-            ],
-        ],
-    ],
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = \Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender::class;

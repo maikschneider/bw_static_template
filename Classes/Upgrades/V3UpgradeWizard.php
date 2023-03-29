@@ -31,6 +31,7 @@ final class V3UpgradeWizard implements UpgradeWizardInterface
     public function executeUpdate(): bool
     {
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $qb->getRestrictions()->removeAll();
         $qb->update('tt_content')
             ->set('tx_bwstatictemplate_template_path', $qb->quoteIdentifier('header'), false)
             ->set('header', '')
@@ -44,6 +45,7 @@ final class V3UpgradeWizard implements UpgradeWizardInterface
             ->executeStatement();
 
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $qb->getRestrictions()->removeAll();
         $qb->update('tt_content')
             ->set('tx_bwstatictemplate_json', $qb->quoteIdentifier('bodytext'), false)
             ->set('bodytext', '')
@@ -62,6 +64,7 @@ final class V3UpgradeWizard implements UpgradeWizardInterface
     public function updateNecessary(): bool
     {
         $qb = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_content');
+        $qb->getRestrictions()->removeAll();
         $results = $qb->select('uid')
             ->from('tt_content')
             ->where(

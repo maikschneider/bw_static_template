@@ -1,6 +1,15 @@
 <?php
 
 $tempFields = [
+    'tx_bwstatictemplate_template_path' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',
+        'config' => [
+            'type' => 'input',
+            'size' => 60,
+            'max' => 255,
+            'eval' => 'trim,required',
+        ],
+    ],
     'tx_bwstatictemplate_from_file' => [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:fromFile',
         'onChange' => 'reload',
@@ -47,7 +56,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['json'] = [
 
 $GLOBALS['TCA']['tt_content']['palettes']['templates'] = [
     'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:templatePalette',
-    'showitem' => 'header,--linebreak--,tx_bwstatictemplate_be_template',
+    'showitem' => 'tx_bwstatictemplate_template_path,--linebreak--,tx_bwstatictemplate_be_template',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
@@ -72,12 +81,6 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ',
     'columnsOverrides' => [
-        'header' => [
-            'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',
-            'config' => [
-                'eval' => 'trim,required',
-            ],
-        ],
         'bodytext' => [
             'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
             'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',

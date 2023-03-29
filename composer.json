@@ -1,7 +1,7 @@
 {
   "name": "blueways/bw-static-template",
   "type": "typo3-cms-extension",
-  "description": "TYPO3 extension that adds a frontend plugin for rendering static fluid templates. Inject JSON and FAL data into the templates.",
+  "description": "TYPO3 extension that adds a new content element for rendering static fluid templates. Inject JSON and FAL data into the templates.",
   "license": "MIT",
   "keywords": [
     "TYPO3"
@@ -15,7 +15,7 @@
   ],
   "require": {
     "blueways/bw-jsoneditor": "^1.1",
-    "typo3/cms-core": "^9.0 || ^10.0 || ^11.0 || ^12.0",
+    "typo3/cms-core": "^12.3",
     "ext-json": "*",
     "ext-pdo": "*"
   },

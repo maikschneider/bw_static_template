@@ -1,5 +1,18 @@
 <?php
 
+// register CType
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+    'tt_content',
+    'CType',
+    [
+        'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
+        'bw_static_template',
+        'tx_bwstatictemplate_pi1',
+    ],
+    'html',
+    'after'
+);
+
 $tempFields = [
     'tx_bwstatictemplate_template_path' => [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',

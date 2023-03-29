@@ -10,19 +10,6 @@ call_user_func(
             ['source' => 'EXT:bw_static_template/Resources/Public/Icons/tt_content_pi1.svg']
         );
 
-        // register CType
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
-            'tt_content',
-            'CType',
-            [
-                'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
-                'bw_static_template',
-                'tx_bwstatictemplate_pi1',
-            ],
-            'html',
-            'after'
-        );
-
         // register css
         $GLOBALS['TBE_STYLES']['skins']['bw_static_template']['stylesheetDirectories'][] = 'EXT:bw_static_template/Resources/Public/Css/';
     }

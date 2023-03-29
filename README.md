@@ -124,6 +124,16 @@ tt_content.bw_static_template {
 }
 ```
 
+## Upgrade from version 2.x to 3.x
+
+In version 3 the default `header` and `bodytext` fields of tt_content aren't used anymore, new fields for template name and json content have been introduced.
+
+To migrate your existing content elements, run the shipped upgrade wizard via backend or command line:
+
+```
+typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
+```
+
 ## Contribute
 
 This extension was made by Maik Schneider: Feel free to contribute!

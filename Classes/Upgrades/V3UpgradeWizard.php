@@ -13,7 +13,6 @@ use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 #[UpgradeWizard('bwStaticTemplate_v3UpgradeWizard')]
 final class V3UpgradeWizard implements UpgradeWizardInterface
 {
-
     public function getIdentifier(): string
     {
         return 'bwStaticTemplate_v3UpgradeWizard';

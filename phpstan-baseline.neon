@@ -21,6 +21,11 @@ parameters:
 			path: Classes/DataProcessing/JsonProcessor.php
 
 		-
+			message: "#^Cannot access offset 9999999999 on mixed\\.$#"
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
@@ -41,6 +46,16 @@ parameters:
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
+			message: "#^Parameter \\#1 \\$layoutRootPaths of method TYPO3\\\\CMS\\\\Fluid\\\\View\\\\AbstractTemplateView\\:\\:setLayoutRootPaths\\(\\) expects array\\<string\\>, mixed given\\.$#"
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: "#^Parameter \\#1 \\$partialRootPaths of method TYPO3\\\\CMS\\\\Fluid\\\\View\\\\AbstractTemplateView\\:\\:setPartialRootPaths\\(\\) expects array\\<string\\>, mixed given\\.$#"
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
 			message: "#^Parameter \\#1 \\$path of static method Blueways\\\\BwStaticTemplate\\\\UserFunc\\\\ContentElementUserFunc\\:\\:getTemplateNameFromPath\\(\\) expects string, mixed given\\.$#"
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
@@ -56,11 +71,11 @@ parameters:
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Parameter \\#1 \\$url of static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:getUrl\\(\\) expects string, mixed given\\.$#"
+			message: "#^Parameter \\#1 \\$templateRootPaths of method TYPO3\\\\CMS\\\\Fluid\\\\View\\\\AbstractTemplateView\\:\\:setTemplateRootPaths\\(\\) expects array\\<string\\>, mixed given\\.$#"
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: "#^Attribute class TYPO3\\\\CMS\\\\Install\\\\Attribute\\\\UpgradeWizard does not exist\\.$#"
+			message: "#^Parameter \\#1 \\$url of static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\GeneralUtility\\:\\:getUrl\\(\\) expects string, mixed given\\.$#"
 			count: 1
-			path: Classes/Upgrades/V3UpgradeWizard.php
+			path: Classes/PreviewRenderer/BackendPreviewRender.php

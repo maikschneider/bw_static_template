@@ -15,7 +15,7 @@
   ],
   "require": {
     "blueways/bw-jsoneditor": "^1.1",
-    "typo3/cms-core": "^12.3",
+    "typo3/cms-core": "^11.5 || ^12.3",
     "ext-json": "*",
     "ext-pdo": "*"
   },

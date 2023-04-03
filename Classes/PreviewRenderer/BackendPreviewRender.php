@@ -104,12 +104,12 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
             $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
 
             if ($isRemoteUrl) {
-                $filePath = $row['tx_bwstatictemplate_file_path'];
+                $fileUrl = $row['tx_bwstatictemplate_file_path'];
                 try {
-                    $jsonText = file_get_contents($filePath);
+                    $jsonText = GeneralUtility::getUrl($fileUrl);
                 } catch (\Exception $e) {
                     $this->errorTitle = 'Error loading JSON';
-                    $this->errorMessage = 'Could not fetch data from remote "' . $filePath . '"';
+                    $this->errorMessage = 'Could not fetch data from remote "' . $fileUrl . '"';
                     return [];
                 }
             }

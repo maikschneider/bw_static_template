@@ -31,11 +31,12 @@ class JsonProcessor implements DataProcessorInterface
 
         if ($processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['tx_bwstatictemplate_file_path']) {
             if (strpos($processedData['data']['tx_bwstatictemplate_file_path'], 'http') === 0) {
-                $filePath = $processedData['data']['tx_bwstatictemplate_file_path'];
+                $fileUrl = $processedData['data']['tx_bwstatictemplate_file_path'];
+                $jsonText = GeneralUtility::getUrl($fileUrl);
             } else {
                 $filePath = GeneralUtility::getFileAbsFileName($processedData['data']['tx_bwstatictemplate_file_path']);
+                $jsonText = $filePath ? file_get_contents($filePath) : '';
             }
-            $jsonText = $filePath ? file_get_contents($filePath) : '';
         }
 
         if ($jsonText) {

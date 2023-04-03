@@ -105,3 +105,4 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = \Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender::class;
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['bw_static_template'] = 'tx_bwstatictemplate_pi1';
+$GLOBALS['TCA']['tt_content']['ctrl']['label_alt'] .= ',tx_bwstatictemplate_template_path';

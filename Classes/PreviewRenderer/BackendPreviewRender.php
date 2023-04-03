@@ -33,7 +33,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
-            $html = $this->renderTablePreview($row);
+            $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
+            $html .= $this->renderTablePreview($row);
         }
 
         // error view

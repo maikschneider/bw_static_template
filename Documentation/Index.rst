@@ -154,6 +154,18 @@ It's just a regular content element that is rendered like every other element of
    }
 
 
+Upgrade from version 2.x to 3.x
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In version 3 the default :file:`header` and :file:`bodytext` fields of tt_content aren't used anymore, new fields for template name and json content have been introduced.
+
+To migrate your existing content elements, run the shipped upgrade wizard via backend or command line:
+
+.. code:: bash
+
+   typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
+
+
 Help & Contribution
 -------------------
 

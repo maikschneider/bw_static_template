@@ -1,5 +1,3 @@
 <?php
 
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['static'] = [
-    'Blueways\BwStaticTemplate\ViewHelpers',
-];
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['bwStaticTemplate_v3UpgradeWizard'] = \Blueways\BwStaticTemplate\Upgrades\V3UpgradeWizard::class;

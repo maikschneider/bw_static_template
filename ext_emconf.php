@@ -6,7 +6,7 @@ $EM_CONF[$_EXTKEY] = [
     'category' => 'templates',
     'constraints' => [
         'depends' => [
-            'typo3' => '8.7.0-12.99.99',
+            'typo3' => '11.5.0-12.99.99',
             'bw_jsoneditor' => '1.1.0-1.99.99',
         ],
         'conflicts' => [
@@ -24,5 +24,5 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Maik Schneider',
     'author_email' => 'maik.schneider@xima.de',
     'author_company' => 'XIMA MEDIA GmbH',
-    'version' => '2.2.2',
+    'version' => '3.0.0',
 ];

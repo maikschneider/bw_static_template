@@ -1,6 +1,28 @@
 <?php
 
+// register CType
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+    'tt_content',
+    'CType',
+    [
+        'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
+        'bw_static_template',
+        'tx_bwstatictemplate_pi1',
+    ],
+    'html',
+    'after'
+);
+
 $tempFields = [
+    'tx_bwstatictemplate_template_path' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',
+        'config' => [
+            'type' => 'input',
+            'size' => 60,
+            'max' => 255,
+            'eval' => 'trim,required',
+        ],
+    ],
     'tx_bwstatictemplate_from_file' => [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:fromFile',
         'onChange' => 'reload',
@@ -36,18 +58,26 @@ $tempFields = [
             'placeholder' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:beTemplate.default',
         ],
     ],
+    'tx_bwstatictemplate_json' => [
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
+        'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
+        'config' => [
+            'type' => 'input',
+            'renderType' => 'jsonForm',
+        ],
+    ],
 ];
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
 
 $GLOBALS['TCA']['tt_content']['palettes']['json'] = [
     'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:jsonPalette',
-    'showitem' => 'tx_bwstatictemplate_from_file,--linebreak--,bodytext,--linebreak--,tx_bwstatictemplate_file_path',
+    'showitem' => 'tx_bwstatictemplate_from_file,--linebreak--,tx_bwstatictemplate_json,--linebreak--,tx_bwstatictemplate_file_path',
 ];
 
 $GLOBALS['TCA']['tt_content']['palettes']['templates'] = [
     'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:templatePalette',
-    'showitem' => 'header,--linebreak--,tx_bwstatictemplate_be_template',
+    'showitem' => 'tx_bwstatictemplate_template_path,--linebreak--,tx_bwstatictemplate_be_template',
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
@@ -71,22 +101,8 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
             rowDescription,
         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
     ',
-    'columnsOverrides' => [
-        'header' => [
-            'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:template',
-            'config' => [
-                'eval' => 'trim,required',
-            ],
-        ],
-        'bodytext' => [
-            'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
-            'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
-            'config' => [
-                'renderType' => 'jsonForm',
-            ],
-        ],
-    ],
 ];
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = \Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender::class;
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['bw_static_template'] = 'tx_bwstatictemplate_pi1';
+$GLOBALS['TCA']['tt_content']['ctrl']['label_alt'] .= ',tx_bwstatictemplate_template_path';

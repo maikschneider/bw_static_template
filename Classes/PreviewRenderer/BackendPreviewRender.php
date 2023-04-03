@@ -33,7 +33,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
-            $html = $this->renderTablePreview($row);
+            $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
+            $html .= $this->renderTablePreview($row);
         }
 
         // error view
@@ -103,12 +104,12 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
             $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
 
             if ($isRemoteUrl) {
-                $filePath = $row['tx_bwstatictemplate_file_path'];
+                $fileUrl = $row['tx_bwstatictemplate_file_path'];
                 try {
-                    $jsonText = file_get_contents($filePath);
+                    $jsonText = GeneralUtility::getUrl($fileUrl);
                 } catch (\Exception $e) {
                     $this->errorTitle = 'Error loading JSON';
-                    $this->errorMessage = 'Could not fetch data from remote "' . $filePath . '"';
+                    $this->errorMessage = 'Could not fetch data from remote "' . $fileUrl . '"';
                     return [];
                 }
             }
@@ -126,8 +127,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
 
         // use from database
-        if (!$row['tx_bwstatictemplate_from_file'] && $row['bodytext']) {
-            $jsonText = $row['bodytext'];
+        if (!$row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_json']) {
+            $jsonText = $row['tx_bwstatictemplate_json'];
         }
 
         // empty json

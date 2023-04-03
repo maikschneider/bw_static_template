@@ -9,11 +9,11 @@ tt_content {
 		layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
 		layoutRootPaths.311 = {$plugin.tx_bwstatictemplate.view.layoutRootPath}
 
-		templateName.data = field:header
+		templateName.data = field:tx_bwstatictemplate_template_path
 		templateName.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateName
 
 		templateRootPaths.9999999999.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateRootPath
-		templateRootPaths.9999999999.data = field:header
+		templateRootPaths.9999999999.data = field:tx_bwstatictemplate_template_path
 
 		dataProcessing {
 			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor

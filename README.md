@@ -126,6 +126,11 @@ tt_content.bw_static_template {
 
 ## Upgrade from version 2.x to 3.x
 
+1. Migrate database fields
+2. Adjust PageTS include
+
+**1. Database migration**
+
 In version 3 the default `header` and `bodytext` fields of tt_content aren't used anymore, new fields for template name and json content have been introduced.
 
 To migrate your existing content elements, run the shipped upgrade wizard via backend or command line:
@@ -133,6 +138,13 @@ To migrate your existing content elements, run the shipped upgrade wizard via ba
 ```
 typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
 ```
+
+**2. PageTS path**
+
+The PageTS config file path changed. Check your include:
+
+* Old: `EXT:bw_static_template/Configuration/PageTS/All.txt`
+* New: `EXT:bw_static_template/Configuration/page.tsconfig`
 
 ## Contribute
 

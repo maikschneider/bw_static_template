@@ -15,13 +15,13 @@
   ],
   "require": {
     "blueways/bw-jsoneditor": "^1.1",
-    "typo3/cms-core": "^11.5 || ^12.3",
+    "typo3/cms-core": "^11.5 || ^12.3 || ^13.0",
     "ext-json": "*",
     "ext-pdo": "*"
   },
   "require-dev": {
-    "typo3/cms-base-distribution": "^12.0",
-    "typo3/cms-lowlevel": "^12.0",
+    "typo3/cms-base-distribution": "^12.0 || ^13.0",
+    "typo3/cms-lowlevel": "^12.0 || ^13.0",
     "bk2k/bootstrap-package": "^13.0",
     "friendsofphp/php-cs-fixer": "^3.12",
     "saschaegerer/phpstan-typo3": "^1.1"

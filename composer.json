@@ -1,8 +1,8 @@
 {
   "name": "blueways/bw-static-template",
-  "type": "typo3-cms-extension",
   "description": "TYPO3 extension that adds a new content element for rendering static fluid templates. Inject JSON and FAL data into the templates.",
   "license": "MIT",
+  "type": "typo3-cms-extension",
   "keywords": [
     "TYPO3"
   ],
@@ -14,41 +14,60 @@
     }
   ],
   "require": {
-    "blueways/bw-jsoneditor": "^1.1",
-    "typo3/cms-core": "^11.5 || ^12.3",
     "ext-json": "*",
-    "ext-pdo": "*"
+    "ext-pdo": "*",
+    "blueways/bw-jsoneditor": "^1.1",
+    "typo3/cms-core": "^11.5 || ^12.3"
   },
   "require-dev": {
-    "typo3/cms-base-distribution": "^12.0",
-    "typo3/cms-lowlevel": "^12.0",
     "bk2k/bootstrap-package": "^13.0",
+    "ergebnis/composer-normalize": "^2.44",
     "friendsofphp/php-cs-fixer": "^3.12",
-    "saschaegerer/phpstan-typo3": "^1.1"
-  },
-  "extra": {
-    "typo3/cms": {
-      "cms-package-dir": "{$vendor-dir}/typo3/cms",
-      "web-dir": "public",
-      "extension-key": "bw_static_template"
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "typo3/cms-composer-installers": true,
-      "typo3/class-alias-loader": true
-    }
+    "helhum/typo3-console": "^8.1",
+    "helmich/typo3-typoscript-lint": "^3.2",
+    "saschaegerer/phpstan-typo3": "^1.1",
+    "ssch/typo3-rector": "^2.10",
+    "symfony/translation": "^7.1",
+    "typo3/cms-base-distribution": "^12.0",
+    "typo3/cms-lowlevel": "^12.0"
   },
   "autoload": {
     "psr-4": {
       "Blueways\\BwStaticTemplate\\": "Classes/"
     }
   },
+  "config": {
+    "allow-plugins": {
+      "ergebnis/composer-normalize": true,
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    },
+    "lock": false,
+    "sort-packages": true
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "extension-key": "bw_static_template",
+      "web-dir": "public"
+    }
+  },
   "scripts": {
-    "php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
-    "php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
-    "ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
     "ci:php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix --dry-run -v --show-progress=dots",
-    "ci:php:stan": "php vendor/bin/phpstan --no-progress"
+    "ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+    "ci:php:stan": "php vendor/bin/phpstan --no-progress",
+    "ci:typoscript:lint": "php vendor/bin/typoscript-lint --fail-on-warnings",
+    "ci:xml:lint": "find ./ -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
+    "ci:yaml:lint": "find ./ ! -path './vendor/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint",
+    "composer:normalize": "@composer normalize --no-check-lock",
+    "lint": [
+      "@php:fixer",
+      "@php:lint",
+      "@php:stan"
+    ],
+    "php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
+    "php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+    "php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
+    "rector": "rector"
   }
 }

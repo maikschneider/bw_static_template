@@ -20,7 +20,8 @@ $tempFields = [
             'type' => 'input',
             'size' => 60,
             'max' => 255,
-            'eval' => 'trim,required',
+            'eval' => 'trim',
+            'required' => true,
         ],
     ],
     'tx_bwstatictemplate_from_file' => [
@@ -32,7 +33,7 @@ $tempFields = [
             'default' => 0,
             'items' => [
                 [
-                    0 => '',
+                    'label' => '',
                     'invertStateDisplay' => true,
                 ],
             ],

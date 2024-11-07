@@ -63,8 +63,8 @@ $tempFields = [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
         'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
         'config' => [
-            'type' => 'input',
-            'renderType' => 'jsonForm',
+            'type' => 'user',
+            'renderType' => 'jsonEditor',
         ],
     ],
 ];

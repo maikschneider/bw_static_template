@@ -5,10 +5,10 @@ Custom content element that renders every fluid template. Inject JSON data or FA
 ![Plugin in the TYPO3 Backend](Documentation/Images/Preview.jpg)
 
 * Sometimes content is very unlikely to change regularly. It's faster to
-  immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
+immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
 * No need to write TCA or TypoScript to get frontend output, that can be adjusted through the backend. (E.g. quick image or phone number change)
 * Perfect if your customer is lazy and never thinks about logging into the
-  backend to do the changes by his own
+backend to do the changes by his own
 * If it's required to implement a standalone solution, the templates can be reused
 
 ## Install
@@ -40,17 +40,17 @@ Enter valid JSON:
 
 ```json
 {
-	"templateMarker1": "Example marker data",
-	"persons": [
-		{
-			"name": "Markus Mustermann",
-			"contactPid": 3
-		},
-		{
-			"name": "Paul Werner",
-			"contactPid": 4
-		}
-	]
+    "templateMarker1": "Example marker data",
+    "persons": [
+        {
+            "name": "Markus Mustermann",
+            "contactPid": 3
+        },
+        {
+            "name": "Paul Werner",
+            "contactPid": 4
+        }
+    ]
 }
 ```
 
@@ -60,7 +60,7 @@ Now you can use the given data in your template, e.g.:
 Hello {templateMarker1}!
 
 <f:for each="{persons}" as="person">
-	Say hello to <f:link.page pageUid="{person.contactPid}">{person.name}</f:link.page>
+    Say hello to <f:link.page pageUid="{person.contactPid}">{person.name}</f:link.page>
 </f:for>
 ```
 
@@ -70,7 +70,7 @@ The selected images are accessible as **FileReference** via ```{files}``` marker
 
 ```html
 <f:for each="{files}" as="file">
-	<f:image image="{file}" />
+    <f:image image="{file}" />
 </f:for>
 
 ```
@@ -83,11 +83,11 @@ If you want to use the Layouts and Partials of fluid_styled_content, you just ne
 
 ```
 plugin.tx_bwstatictemplate_pi1 {
-	view {
-		templateRootPath =
-		partialRootPath =
-		layoutRootPath =
-	}
+    view {
+        templateRootPath =
+        partialRootPath =
+        layoutRootPath =
+    }
 }
 ```
 

@@ -4,19 +4,19 @@ Static Template CE
 Custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
 
 .. figure:: ./Images/Preview.jpg
-   :alt: Plugin in the TYPO3 Backend
+:alt: Plugin in the TYPO3 Backend
 
 Why?
 ----
 
 * Sometimes content is very unlikely to change regularly. It's faster to
-  immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
+immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
 * No need to write TCA or TypoScript to get frontend output, that can be adjusted through the backend. (E.g. quick image or phone number change)
 * If it's required to implement a standalone solution, the templates can be reused
 
 .. tip::
 
-   Perfect if your customer is lazy and never thinks about logging into the backend to do the changes by his own.
+Perfect if your customer is lazy and never thinks about logging into the backend to do the changes by his own.
 
 Installation
 ------------
@@ -25,11 +25,11 @@ Installation
 
 1. Install via composer
 
-   .. code:: bash
+.. code:: bash
 
-      composer require blueways/bw-static-template
+    composer require blueways/bw-static-template
 
-   Or install via Extension Manager, in this case you can skip step 2.
+Or install via Extension Manager, in this case you can skip step 2.
 
 2. Include static TypoScript template
 
@@ -40,16 +40,16 @@ Usage
 -----
 
 .. figure:: ./Images/NewContentElement.png
-   :alt: Content Element Wizard
-   :class: with-shadow
+:alt: Content Element Wizard
+:class: with-shadow
 
 
 Add content element to page and select a fluid template to render (e.g.: :file:`EXT:your_ext/Resources/Private/Partials/Header.html`).
 
 
 .. figure:: ./Images/TCA.png
-   :alt: TCA
-   :class: with-shadow
+:alt: TCA
+:class: with-shadow
 
 
 Save & done.
@@ -62,29 +62,29 @@ Enter valid JSON:
 
 .. code:: typoscript
 
-   {
-      "templateMarker1": "Example marker data",
-      "persons": [
-         {
+{
+    "templateMarker1": "Example marker data",
+    "persons": [
+        {
             "name": "Markus Mustermann",
             "contactUid": 3
-         },
-         {
+        },
+        {
             "name": "Paul Werner",
             "contactUid": 4
-         }
-      ]
-   }
+        }
+    ]
+}
 
 Now you can use the given data in your template, e.g.:
 
 .. code:: html
 
-   Hello {templateMarker1}!
+Hello {templateMarker1}!
 
-   <f:for each="{persons}" as="person">
-      Say hello to <f:link.page pageUid="{person.contactUid}">{person.name}</f:link.page>
-   </f:for>
+<f:for each="{persons}" as="person">
+    Say hello to <f:link.page pageUid="{person.contactUid}">{person.name}</f:link.page>
+</f:for>
 
 
 Select images (optional)
@@ -94,9 +94,9 @@ The selected images are accessible as :file:`FileReference` via :file:`files` ma
 
 .. code:: html
 
-   <f:for each="{files}" as="file">
-      <f:image image="{file}" />
-   </f:for>
+<f:for each="{files}" as="file">
+    <f:image image="{file}" />
+</f:for>
 
 
 Configuration
@@ -109,13 +109,13 @@ If you want to use the Layouts and Partials of fluid_styled_content, you just ne
 
 .. code:: typoscript
 
-   plugin.tx_bwstatictemplate_pi1 {
-      view {
-         templateRootPath =
-         partialRootPath =
-         layoutRootPath =
-      }
-   }
+plugin.tx_bwstatictemplate_pi1 {
+    view {
+        templateRootPath =
+        partialRootPath =
+        layoutRootPath =
+    }
+}
 
 
 Setup
@@ -125,33 +125,33 @@ It's just a regular content element that is rendered like every other element of
 
 .. code:: typoscript
 
-   tt_content.bw_static_template {
+tt_content.bw_static_template {
 
-       # insert variables
-       variables {
-           foo = TEXT
-           foo.value = bar
-       }
+    # insert variables
+    variables {
+        foo = TEXT
+        foo.value = bar
+    }
 
-       # use DataProcessor (10 and 20 are reserved indexes)
-       dataProcessing {
+    # use DataProcessor (10 and 20 are reserved indexes)
+    dataProcessing {
 
-           # Inject a menu
-           30 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
-           30 {
-               as = navigation
-               entryLevel = 0
-           }
+        # Inject a menu
+        30 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+        30 {
+            as = navigation
+            entryLevel = 0
+        }
 
-           # Inject data about the current page
-           40 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
-           40 {
-               table = pages
-               pidInList = this
-               as = page
-           }
-       }
-   }
+        # Inject data about the current page
+        40 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        40 {
+            table = pages
+            pidInList = this
+            as = page
+        }
+    }
+}
 
 
 Upgrade from version 2.x to 3.x
@@ -163,7 +163,7 @@ To migrate your existing content elements, run the shipped upgrade wizard via ba
 
 .. code:: bash
 
-   typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
+typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
 
 
 Help & Contribution

@@ -7,6 +7,8 @@ use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
@@ -62,8 +64,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $row
-     */
+    * @param array<string, mixed> $row
+    */
     protected function renderTablePreview(array $row): string
     {
         $json = $this->getJson($row);
@@ -92,9 +94,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $row
-     * @return array<string, mixed>
-     */
+    * @param array<string, mixed> $row
+    * @return array<string, mixed>
+    */
     protected function getJson(array $row): array
     {
         $jsonText = '';
@@ -148,8 +150,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $json
-     */
+    * @param array<string, mixed> $json
+    */
     protected function getJsonAsTable(array $json): string
     {
         $content = '<table class="table table-striped">';
@@ -162,9 +164,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param mixed $key
-     * @param mixed $value
-     */
+    * @param mixed $key
+    * @param mixed $value
+    */
     protected static function getTableRow($key, $value): string
     {
         $html = '<tr>';
@@ -193,8 +195,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $json
-     */
+    * @param array<string, mixed> $json
+    */
     protected function getJsonDepth(array $json): int
     {
         $maxDepth = 0;
@@ -206,8 +208,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param mixed $value
-     */
+    * @param mixed $value
+    */
     protected function checkArrayDepthOfNextLevel($value, int &$maxDepth): void
     {
         if (is_array($value)) {
@@ -226,9 +228,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $row
-     * @throws InvalidConfigurationTypeException
-     */
+    * @param array<string, mixed> $row
+    * @throws InvalidConfigurationTypeException
+    */
     protected function renderFluidBackendTemplate(array $row): string
     {
         $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
@@ -248,6 +250,14 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         $view->setLayoutRootPaths($viewSettings['layoutRootPaths']);
         $view->setPartialRootPaths($viewSettings['partialRootPaths']);
         $view->setTemplate($templateName);
+
+        /** @var PageRenderer $pageRenderer */
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
+            JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance($row['uid'])
+        );
+
+        \TYPO3\CMS\Core\Utility\DebugUtility::debug('fe', 'Debug: ' . __FILE__ . ' in Line: ' . __LINE__);
 
         // insert data
         $json = $this->getJson($row);

@@ -36,6 +36,10 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
             $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
+            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+            $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
+                JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()
+            );
             $html .= $this->renderTablePreview($row);
         }
 
@@ -88,7 +92,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         $onClick = 'document.getElementById(\'jsonTable' . $row['uid'] . '\').classList.remove(\'jsonTablePreview--hidden\')';
         $moreIcon = '<span class="icon icon-size-small icon-state-default"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="m4.464 6.05-.707.707L8 11l4.243-4.243-.707-.707L8 9.586z"/></g></svg></span>';
         $moreText = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.more');
-        $content .= '<p class="text-center"><button onclick="' . $onClick . '" type="button" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
+        $content .= '<p class="text-center"><button type="button" data-json-table="jsonTable' . $row['uid'] . '" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
 
         return $content;
     }

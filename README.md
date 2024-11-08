@@ -1,8 +1,21 @@
-# Static Template TYPO3 extension
+<div align="center">
 
-Custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
+![Extension icon](Resources/Public/Icons/Extension.svg)
+
+# TYPO3 extension `bw_static_template`
+
+![Latest version](https://typo3-badges.dev/badge/bw_static_template/version/shields.svg)
+[![Supported TYPO3 versions](https://typo3-badges.dev/badge/bw_static_template/typo3/shields.svg)](https://extensions.typo3.org/extension/bw_static_template)
+![Total downloads](https://typo3-badges.dev/badge/bw_static_template/downloads/shields.svg)
+[![Composer](https://typo3-badges.dev/badge/bw_static_template/composer/shields.svg)](https://packagist.org/packages/blueways/bw-static-template)
+
+</div>
+
+This TYPO3 extensions shipps a custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
 
 ![Plugin in the TYPO3 Backend](Documentation/Images/Preview.jpg)
+
+## Why?
 
 * Sometimes content is very unlikely to change regularly. It's faster to
 immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
@@ -15,9 +28,9 @@ backend to do the changes by his own
 
 1. Install via composer:
 
-    ```
-    composer require blueways/bw-static-template
-    ```
+```bash
+composer require blueways/bw-static-template
+```
 
 2. Include static TypoScript template
 3. Include static PageTS template
@@ -124,32 +137,13 @@ tt_content.bw_static_template {
 }
 ```
 
-## Upgrade from version 2.x to 3.x
+## License
 
-1. Migrate database fields
-2. Adjust PageTS include
-
-**1. Database migration**
-
-In version 3 the default `header` and `bodytext` fields of tt_content aren't used anymore, new fields for template name and json content have been introduced.
-
-To migrate your existing content elements, run the shipped upgrade wizard via backend or command line:
-
-```
-typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
-```
-
-**2. PageTS path**
-
-The PageTS config file path changed. Check your include:
-
-* Old: `EXT:bw_static_template/Configuration/PageTS/All.txt`
-* New: `EXT:bw_static_template/Configuration/page.tsconfig`
+This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).
 
 ## Contribute
 
 This extension was made by Maik Schneider: Feel free to contribute!
 
-* [Github-Repository](https://github.com/maikschneider/bw_static_template)
-
 Thanks to [blueways](https://www.blueways.de/) and [XIMA](https://www.xima.de/)!
+

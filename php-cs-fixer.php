@@ -42,6 +42,7 @@ $finder = (new PhpCsFixer\Finder())
 //  - Remove trailing whitespace at the end of blank lines.
 return (new \PhpCsFixer\Config())
     ->setRiskyAllowed(true)
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
     ->setRules([
         '@DoctrineAnnotation' => true,
         '@PSR2' => true,

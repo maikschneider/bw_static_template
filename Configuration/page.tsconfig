@@ -1,13 +1,13 @@
-mod.wizards.newContentElement.wizardItems.special {
-  elements {
-    bwstatictemplate_pi1 {
-      iconIdentifier = tx_bwstatictemplate_pi1
-      title = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title
-      description = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.description
-      tt_content_defValues {
-        CType = bw_static_template
-      }
-    }
-  }
-  show := addToList(bwstatictemplate_pi1)
-}
+#mod.wizards.newContentElement.wizardItems.special {
+#  elements {
+#    bwstatictemplate_pi1 {
+#      iconIdentifier = tx_bwstatictemplate_pi1
+#      title = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title
+#      description = LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.description
+#      tt_content_defValues {
+#        CType = bw_static_template
+#      }
+#    }
+#  }
+#  show := addToList(bwstatictemplate_pi1)
+#}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd" links-are-relative="true">
+  <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension" project-contact="schneider.maik@me.com" project-repository="https://github.com/maikschneider/bw_static_template" project-issues="https://github.com/maikschneider/bw_static_template/issues" typo3-core-preferred="stable"/>
+  <project title="Static Template CE" release="4.0.0" copyright="Maik Schneider"/>
+</guides>

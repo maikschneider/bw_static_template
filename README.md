@@ -11,7 +11,7 @@
 
 </div>
 
-This TYPO3 extensions shipps a custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
+This TYPO3 extensions ships a custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
 
 ![Plugin in the TYPO3 Backend](Documentation/Images/Preview.jpg)
 
@@ -37,17 +37,17 @@ composer require blueways/bw-static-template
 
 ## Usage
 
-Add content element to page
+Add the content element **Static Template** to a page
 
 ![Content Element Wizard](./Documentation/Images/NewContentElement.png)
 
-Select fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
+Select a fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
 
 ![Backend TCA](./Documentation/Images/TCA.png)
 
 Save & done.
 
-### Optional: Pass data into template
+### Optional: Pass data into the template
 
 Enter valid JSON:
 

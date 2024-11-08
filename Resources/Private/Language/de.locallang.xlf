@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-23T11:36:30Z">
 		<body>
 			<trans-unit id="pi1.wizard.title">
+				<source />
 				<target>Statisches Template</target>
 			</trans-unit>
 			<trans-unit id="pi1.wizard.description">
+				<source />
 				<target>Zeigt ein Fluid-Template an</target>
 			</trans-unit>
 			<trans-unit id="template">
+				<source />
 				<target>Frontend Template</target>
 			</trans-unit>
 			<trans-unit id="json">
+				<source />
 				<target>JSON</target>
 			</trans-unit>
 			<trans-unit id="preview.more">
+				<source />
 				<target>Zeige mehr</target>
 			</trans-unit>
 			<trans-unit id="fromFile">
+				<source />
 				<target>In Datenbank speichern</target>
 			</trans-unit>
 			<trans-unit id="filePath">
+				<source />
 				<target>JSON-Dateipfad</target>
 			</trans-unit>
 			<trans-unit id="jsonPalette">
+				<source />
 				<target>JSON-Daten</target>
 			</trans-unit>
 			<trans-unit id="beTemplate">
+				<source />
 				<target>Backend Vorschau</target>
 			</trans-unit>
 			<trans-unit id="beTemplate.default">
+				<source />
 				<target>Standard</target>
 			</trans-unit>
 			<trans-unit id="templatePalette">
+				<source />
 				<target>Templates</target>
 			</trans-unit>
 		</body>

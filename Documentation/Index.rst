@@ -28,9 +28,11 @@ Installation
 
             composer require blueways/bw-static-template
 
-    2. Include static TypoScript template
+    2. Include static TypoScript template or manually import it:
 
-    3. Include static PageTS template
+        .. code:: typoscript
+
+            @import 'EXT:bw_static_template/Configuration/TypoScript/setup.typoscript'
 
 
 Usage

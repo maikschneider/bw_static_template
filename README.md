@@ -32,8 +32,11 @@ backend to do the changes by his own
 composer require blueways/bw-static-template
 ```
 
-2. Include static TypoScript template
-3. Include static PageTS template
+2. Include static TypoScript template or manually import it:
+
+```typoscript
+@import 'EXT:bw_static_template/Configuration/TypoScript/setup.typoscript'
+```
 
 ## Usage
 

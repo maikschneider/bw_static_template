@@ -18,7 +18,6 @@ return RectorConfig::configure()
         __DIR__ . '/Configuration',
         __DIR__ . '/config',
         __DIR__ . '/ext_emconf.php',
-        __DIR__ . '/ext_localconf.php',
         __DIR__ . '/ext_tables.php',
     ])
     // uncomment to reach your current PHP version

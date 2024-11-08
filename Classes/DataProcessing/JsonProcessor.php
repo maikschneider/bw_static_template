@@ -12,10 +12,10 @@ class JsonProcessor implements DataProcessorInterface
     * Process data of a record to resolve File objects to the view
     *
     * @param ContentObjectRenderer $cObj The data of the content element or page
-    * @param array $contentObjectConfiguration The configuration of Content Object
-    * @param array $processorConfiguration The configuration of this processor
-    * @param array $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
-    * @return array the processed data as key/value store
+    * @param array<string, string> $contentObjectConfiguration The configuration of Content Object
+    * @param array<string, string> $processorConfiguration The configuration of this processor
+    * @param array<string, array<string, string>> $processedData Key/value store of processed data (e.g. to be passed to a Fluid View)
+    * @return array<string, array<string, string>> the processed data as key/value store
     */
     public function process(
         ContentObjectRenderer $cObj,
@@ -30,7 +30,7 @@ class JsonProcessor implements DataProcessorInterface
         }
 
         if ($processedData['data']['tx_bwstatictemplate_from_file'] && $processedData['data']['tx_bwstatictemplate_file_path']) {
-            if (strpos($processedData['data']['tx_bwstatictemplate_file_path'], 'http') === 0) {
+            if (str_starts_with($processedData['data']['tx_bwstatictemplate_file_path'], 'http')) {
                 $fileUrl = $processedData['data']['tx_bwstatictemplate_file_path'];
                 $jsonText = GeneralUtility::getUrl($fileUrl);
             } else {

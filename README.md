@@ -1,56 +1,72 @@
-# Static Template TYPO3 extension
+<div align="center">
 
-Custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
+![Extension icon](Resources/Public/Icons/Extension.svg)
+
+# TYPO3 extension `bw_static_template`
+
+![Latest version](https://typo3-badges.dev/badge/bw_static_template/version/shields.svg)
+[![Supported TYPO3 versions](https://typo3-badges.dev/badge/bw_static_template/typo3/shields.svg)](https://extensions.typo3.org/extension/bw_static_template)
+![Total downloads](https://typo3-badges.dev/badge/bw_static_template/downloads/shields.svg)
+[![Composer](https://typo3-badges.dev/badge/bw_static_template/composer/shields.svg)](https://packagist.org/packages/blueways/bw-static-template)
+
+</div>
+
+This TYPO3 extensions ships a custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
 
 ![Plugin in the TYPO3 Backend](Documentation/Images/Preview.jpg)
 
+## Why?
+
 * Sometimes content is very unlikely to change regularly. It's faster to
-  immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
+immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
 * No need to write TCA or TypoScript to get frontend output, that can be adjusted through the backend. (E.g. quick image or phone number change)
 * Perfect if your customer is lazy and never thinks about logging into the
-  backend to do the changes by his own
+backend to do the changes by his own
 * If it's required to implement a standalone solution, the templates can be reused
 
 ## Install
 
 1. Install via composer:
 
-    ```
-    composer require blueways/bw-static-template
-    ```
+```bash
+composer require blueways/bw-static-template
+```
 
-2. Include static TypoScript template
-3. Include static PageTS template
+2. Include static TypoScript template or manually import it:
+
+```typoscript
+@import 'EXT:bw_static_template/Configuration/TypoScript/setup.typoscript'
+```
 
 ## Usage
 
-Add content element to page
+Add the content element **Static Template** to a page
 
 ![Content Element Wizard](./Documentation/Images/NewContentElement.png)
 
-Select fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
+Select a fluid template to render (e.g.: ```EXT:your_ext/Resources/Private/Partials/Header.html```)
 
 ![Backend TCA](./Documentation/Images/TCA.png)
 
 Save & done.
 
-### Optional: Pass data into template
+### Optional: Pass data into the template
 
 Enter valid JSON:
 
 ```json
 {
-	"templateMarker1": "Example marker data",
-	"persons": [
-		{
-			"name": "Markus Mustermann",
-			"contactPid": 3
-		},
-		{
-			"name": "Paul Werner",
-			"contactPid": 4
-		}
-	]
+    "templateMarker1": "Example marker data",
+    "persons": [
+        {
+            "name": "Markus Mustermann",
+            "contactPid": 3
+        },
+        {
+            "name": "Paul Werner",
+            "contactPid": 4
+        }
+    ]
 }
 ```
 
@@ -60,7 +76,7 @@ Now you can use the given data in your template, e.g.:
 Hello {templateMarker1}!
 
 <f:for each="{persons}" as="person">
-	Say hello to <f:link.page pageUid="{person.contactPid}">{person.name}</f:link.page>
+    Say hello to <f:link.page pageUid="{person.contactPid}">{person.name}</f:link.page>
 </f:for>
 ```
 
@@ -70,7 +86,7 @@ The selected images are accessible as **FileReference** via ```{files}``` marker
 
 ```html
 <f:for each="{files}" as="file">
-	<f:image image="{file}" />
+    <f:image image="{file}" />
 </f:for>
 
 ```
@@ -83,11 +99,11 @@ If you want to use the Layouts and Partials of fluid_styled_content, you just ne
 
 ```
 plugin.tx_bwstatictemplate_pi1 {
-	view {
-		templateRootPath =
-		partialRootPath =
-		layoutRootPath =
-	}
+    view {
+        templateRootPath =
+        partialRootPath =
+        layoutRootPath =
+    }
 }
 ```
 
@@ -124,32 +140,12 @@ tt_content.bw_static_template {
 }
 ```
 
-## Upgrade from version 2.x to 3.x
+## License
 
-1. Migrate database fields
-2. Adjust PageTS include
-
-**1. Database migration**
-
-In version 3 the default `header` and `bodytext` fields of tt_content aren't used anymore, new fields for template name and json content have been introduced.
-
-To migrate your existing content elements, run the shipped upgrade wizard via backend or command line:
-
-```
-typo3 upgrade:run bwStaticTemplate_v3UpgradeWizard
-```
-
-**2. PageTS path**
-
-The PageTS config file path changed. Check your include:
-
-* Old: `EXT:bw_static_template/Configuration/PageTS/All.txt`
-* New: `EXT:bw_static_template/Configuration/page.tsconfig`
+This project is licensed under [GNU General Public License 2.0 (or later)](LICENSE.md).
 
 ## Contribute
 
 This extension was made by Maik Schneider: Feel free to contribute!
-
-* [Github-Repository](https://github.com/maikschneider/bw_static_template)
 
 Thanks to [blueways](https://www.blueways.de/) and [XIMA](https://www.xima.de/)!

@@ -20,7 +20,8 @@ $tempFields = [
             'type' => 'input',
             'size' => 60,
             'max' => 255,
-            'eval' => 'trim,required',
+            'eval' => 'trim',
+            'required' => true,
         ],
     ],
     'tx_bwstatictemplate_from_file' => [
@@ -32,7 +33,7 @@ $tempFields = [
             'default' => 0,
             'items' => [
                 [
-                    0 => '',
+                    'label' => '',
                     'invertStateDisplay' => true,
                 ],
             ],
@@ -62,8 +63,8 @@ $tempFields = [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:json',
         'displayCond' => 'FIELD:tx_bwstatictemplate_from_file:=:0',
         'config' => [
-            'type' => 'input',
-            'renderType' => 'jsonForm',
+            'type' => 'user',
+            'renderType' => 'jsonEditor',
         ],
     ],
 ];

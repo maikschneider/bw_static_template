@@ -7,12 +7,13 @@ use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
+use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class BackendPreviewRender extends StandardContentPreviewRenderer
@@ -34,12 +35,16 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
             $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
+            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+            $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
+                JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()
+            );
             $html .= $this->renderTablePreview($row);
         }
 
         // error view
         if ($this->errorMessage) {
-            $html = '<div class="callout callout-danger"><p class="callout-title">' . $this->errorTitle . '</p> ' . $this->errorMessage . '</div>';
+            $html = '<div class="callout callout-danger"><div class="callout-icon"></div><div class="callout-content"><h3>' . $this->errorTitle . '</h3><p class="mb-0">' . $this->errorMessage . '</p></div></div>';
         }
 
         // append images (not in custom preview)
@@ -62,8 +67,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $row
-     */
+    * @param array<string, string> $row
+    */
     protected function renderTablePreview(array $row): string
     {
         $json = $this->getJson($row);
@@ -83,25 +88,24 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         $content = '<div class="jsonTablePreview jsonTablePreview--hidden" id="jsonTable' . $row['uid'] . '">';
         $content .= $this->linkEditContent($table, $row);
         $content .= '</div>';
-        $onClick = 'document.getElementById(\'jsonTable' . $row['uid'] . '\').classList.remove(\'jsonTablePreview--hidden\')';
         $moreIcon = '<span class="icon icon-size-small icon-state-default"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="m4.464 6.05-.707.707L8 11l4.243-4.243-.707-.707L8 9.586z"/></g></svg></span>';
         $moreText = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.more');
-        $content .= '<p class="text-center"><button onclick="' . $onClick . '" type="button" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
+        $content .= '<p class="text-center"><button type="button" data-json-table="jsonTable' . $row['uid'] . '" class="btn btn-sm btn-link">' . $moreIcon . $moreText . '</button></p>';
 
         return $content;
     }
 
     /**
-     * @param array<string, mixed> $row
-     * @return array<string, mixed>
-     */
+    * @param array<string, string> $row
+    * @return array<string, mixed>
+    */
     protected function getJson(array $row): array
     {
         $jsonText = '';
 
         // fetch from file (or remote)
         if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
-            $isRemoteUrl = strpos($row['tx_bwstatictemplate_file_path'], 'http') === 0;
+            $isRemoteUrl = GeneralUtility::isValidUrl($row['tx_bwstatictemplate_file_path']);
 
             if ($isRemoteUrl) {
                 $fileUrl = $row['tx_bwstatictemplate_file_path'];
@@ -148,8 +152,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $json
-     */
+    * @param array<string, mixed> $json
+    */
     protected function getJsonAsTable(array $json): string
     {
         $content = '<table class="table table-striped">';
@@ -162,9 +166,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param mixed $key
-     * @param mixed $value
-     */
+    * @param mixed $key
+    * @param mixed $value
+    */
     protected static function getTableRow($key, $value): string
     {
         $html = '<tr>';
@@ -193,8 +197,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $json
-     */
+    * @param array<string, mixed> $json
+    */
     protected function getJsonDepth(array $json): int
     {
         $maxDepth = 0;
@@ -206,8 +210,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param mixed $value
-     */
+    * @param mixed $value
+    */
     protected function checkArrayDepthOfNextLevel($value, int &$maxDepth): void
     {
         if (is_array($value)) {
@@ -226,18 +230,18 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-     * @param array<string, mixed> $row
-     * @throws InvalidConfigurationTypeException
-     */
+    * @param array<string, string> $row
+    */
     protected function renderFluidBackendTemplate(array $row): string
     {
         $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
+        /** @var array<string, array<int, string>> $viewSettings */
         $viewSettings = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScript['lib.']['contentElement.']);
         $templateName = $row['tx_bwstatictemplate_be_template'];
 
         // set template name and root path from EXT:name/Resources/Private/Templates/Show.html
-        if (strpos($templateName, 'EXT:') === 0) {
+        if (str_starts_with($templateName, 'EXT:')) {
             $templateRootPath = ContentElementUserFunc::getTemplateRootPathFromPath($templateName);
             $viewSettings['templateRootPaths'][9999999999] = $templateRootPath;
             $templateName = ContentElementUserFunc::getTemplateNameFromPath($templateName);
@@ -248,6 +252,12 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         $view->setLayoutRootPaths($viewSettings['layoutRootPaths']);
         $view->setPartialRootPaths($viewSettings['partialRootPaths']);
         $view->setTemplate($templateName);
+
+        /** @var PageRenderer $pageRenderer */
+        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
+            JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance($row['uid'])
+        );
 
         // insert data
         $json = $this->getJson($row);
@@ -260,7 +270,8 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
 
         try {
-            return $view->render() ?? '';
+            $html = $view->render();
+            return is_string($html) ? $html : '';
         } catch (\Exception $e) {
             $this->errorTitle = 'Error rendering preview';
             $this->errorMessage = $e->getMessage();

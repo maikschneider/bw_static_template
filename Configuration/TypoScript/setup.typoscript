@@ -1,30 +1,30 @@
 tt_content {
-	bw_static_template =< lib.contentElement
-	bw_static_template {
+  bw_static_template =< lib.contentElement
+  bw_static_template {
 
-		templateRootPaths.310 = EXT:bw_static_template/Resources/Private/Templates/
-		templateRootPaths.311 = {$plugin.tx_bwstatictemplate.view.templateRootPath}
-		partialRootPaths.310 = EXT:bw_static_template/Resources/Private/Partials/
-		partialRootPaths.311 = {$plugin.tx_bwstatictemplate.view.partialRootPath}
-		layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
-		layoutRootPaths.311 = {$plugin.tx_bwstatictemplate.view.layoutRootPath}
+    templateRootPaths.310 = EXT:bw_static_template/Resources/Private/Templates/
+    templateRootPaths.311 = {$plugin.tx_bwstatictemplate.view.templateRootPath}
+    partialRootPaths.310 = EXT:bw_static_template/Resources/Private/Partials/
+    partialRootPaths.311 = {$plugin.tx_bwstatictemplate.view.partialRootPath}
+    layoutRootPaths.310 = EXT:bw_static_template/Resources/Private/Layouts/
+    layoutRootPaths.311 = {$plugin.tx_bwstatictemplate.view.layoutRootPath}
 
-		templateName.data = field:tx_bwstatictemplate_template_path
-		templateName.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateName
+    templateName.data = field:tx_bwstatictemplate_template_path
+    templateName.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateName
 
-		templateRootPaths.9999999999.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateRootPath
-		templateRootPaths.9999999999.data = field:tx_bwstatictemplate_template_path
+    templateRootPaths.9999999999.stdWrap.postUserFunc = Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc->getTemplateRootPath
+    templateRootPaths.9999999999.data = field:tx_bwstatictemplate_template_path
 
-		dataProcessing {
-			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
-			10 {
-				references.fieldName = assets
-			}
+    dataProcessing {
+      10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+      10 {
+        references.fieldName = assets
+      }
 
-			20 = Blueways\BwStaticTemplate\DataProcessing\JsonProcessor
-			20 {
-				references.fieldName = assets
-			}
-		}
-	}
+      20 = Blueways\BwStaticTemplate\DataProcessing\JsonProcessor
+      20 {
+        references.fieldName = assets
+      }
+    }
+  }
 }

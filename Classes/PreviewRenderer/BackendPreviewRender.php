@@ -21,6 +21,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     protected string $errorMessage = '';
 
     protected string $errorTitle = '';
+    public function __construct(private readonly \TYPO3\CMS\Core\Page\PageRenderer $pageRenderer, private readonly \TYPO3\CMS\Extbase\Configuration\ConfigurationManager $configurationManager)
+    {
+    }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
@@ -35,7 +38,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
             $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
-            $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+            $pageRenderer = $this->pageRenderer;
             $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
                 JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()
             );
@@ -234,7 +237,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     */
     protected function renderFluidBackendTemplate(array $row): string
     {
-        $typoScript = GeneralUtility::makeInstance(ConfigurationManager::class)->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $typoScript = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
         /** @var array<string, array<int, string>> $viewSettings */
         $viewSettings = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScript['lib.']['contentElement.']);
@@ -247,14 +250,28 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
             $templateName = ContentElementUserFunc::getTemplateNameFromPath($templateName);
         }
 
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplateRootPaths($viewSettings['templateRootPaths']);
-        $view->setLayoutRootPaths($viewSettings['layoutRootPaths']);
-        $view->setPartialRootPaths($viewSettings['partialRootPaths']);
-        $view->setTemplate($templateName);
+        if (class_exists(StandaloneView::class)) {
+            // TYPO3 v12/v13
+            $view = GeneralUtility::makeInstance(StandaloneView::class);
+            $view->getRenderingContext()->getTemplatePaths()->setTemplateRootPaths($viewSettings['templateRootPaths']);
+            $view->getRenderingContext()->getTemplatePaths()->setLayoutRootPaths($viewSettings['layoutRootPaths']);
+            $view->getRenderingContext()->getTemplatePaths()->setPartialRootPaths($viewSettings['partialRootPaths']);
+            $view->getRenderingContext()->setControllerAction($templateName);
+        } else {
+            // TYPO3 v14+ (StandaloneView removed)
+            $viewFactoryData = new \TYPO3\CMS\Core\View\ViewFactoryData(
+                templateRootPaths: $viewSettings['templateRootPaths'],
+                partialRootPaths: $viewSettings['partialRootPaths'],
+                layoutRootPaths: $viewSettings['layoutRootPaths'],
+                request: $GLOBALS['TYPO3_REQUEST'] ?? null,
+            );
+            /** @var \TYPO3\CMS\Core\View\ViewFactoryInterface $viewFactory */
+            $viewFactory = GeneralUtility::getContainer()->get(\TYPO3\CMS\Core\View\ViewFactoryInterface::class);
+            $view = $viewFactory->create($viewFactoryData);
+        }
 
         /** @var PageRenderer $pageRenderer */
-        $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
+        $pageRenderer = $this->pageRenderer;
         $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
             JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance($row['uid'])
         );
@@ -270,7 +287,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         }
 
         try {
-            $html = $view->render();
+            $html = class_exists(StandaloneView::class) ? $view->render() : $view->render($templateName);
             return is_string($html) ? $html : '';
         } catch (\Exception $e) {
             $this->errorTitle = 'Error rendering preview';

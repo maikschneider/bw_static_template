@@ -5,9 +5,9 @@
     'tt_content',
     'CType',
     [
-        'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
-        'bw_static_template',
-        'tx_bwstatictemplate_pi1',
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
+        'value' => 'bw_static_template',
+        'icon' => 'tx_bwstatictemplate_pi1',
     ],
     'html',
     'after'
@@ -83,7 +83,7 @@ $GLOBALS['TCA']['tt_content']['palettes']['templates'] = [
 
 $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
     'showitem' => '
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+        --div--;core.form.tabs:general,
             --palette--;;general,
             --palette--;;templates,
             --palette--;;json,
@@ -91,16 +91,16 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
         --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
             --palette--;;frames,
             --palette--;;appearanceLinks,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+        --div--;core.form.tabs:language,
             --palette--;;language,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+        --div--;core.form.tabs:access,
             --palette--;;hidden,
             --palette--;;access,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:categories,
+        --div--;core.form.tabs:categories,
             categories,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+        --div--;core.form.tabs:notes,
             rowDescription,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
+        --div--;core.form.tabs:extended,
     ',
 ];
 

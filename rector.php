@@ -42,6 +42,8 @@ return RectorConfig::configure()
     ->withSkip([
         // @see https://github.com/sabbelasichon/typo3-rector/issues/2536
         __DIR__ . '/**/Configuration/ExtensionBuilder/*',
+        // Keep LLL:EXT: tab labels for TYPO3 v12 compatibility (core.form.tabs:* is v14+ only)
+        __DIR__ . '/Configuration/TCA/Overrides/tt_content.php',
         NameImportingPostRector::class => [
             'ext_localconf.php', // This line can be removed since TYPO3 11.4, see https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/11.4/Important-94280-MoveContentsOfExtPhpIntoLocalScopes.html
             'ext_tables.php', // This line can be removed since TYPO3 11.4, see https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/11.4/Important-94280-MoveContentsOfExtPhpIntoLocalScopes.html

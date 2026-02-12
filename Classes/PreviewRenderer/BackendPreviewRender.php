@@ -12,7 +12,6 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -28,6 +27,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $html = '';
+        /** @var array<string, string|int|null> $row */
         $row = $item->getRecord();
 
         // custom preview
@@ -52,7 +52,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // append images (not in custom preview)
         if (!$row['tx_bwstatictemplate_be_template'] && $row['assets']) {
-            $html .= BackendUtility::thumbCode(
+            $html .= (string)BackendUtility::thumbCode(
                 $row,
                 'tt_content',
                 'assets',
@@ -70,7 +70,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-    * @param array<string, string> $row
+    * @param array<string, string|int|null> $row
     */
     protected function renderTablePreview(array $row): string
     {
@@ -99,7 +99,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     }
 
     /**
-    * @param array<string, string> $row
+    * @param array<string, string|int|null> $row
     * @return array<string, mixed>
     */
     protected function getJson(array $row): array
@@ -108,21 +108,21 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // fetch from file (or remote)
         if ($row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_file_path']) {
-            $isRemoteUrl = GeneralUtility::isValidUrl($row['tx_bwstatictemplate_file_path']);
+            $filePathOrUrl = (string)$row['tx_bwstatictemplate_file_path'];
+            $isRemoteUrl = GeneralUtility::isValidUrl($filePathOrUrl);
 
             if ($isRemoteUrl) {
-                $fileUrl = $row['tx_bwstatictemplate_file_path'];
                 try {
-                    $jsonText = GeneralUtility::getUrl($fileUrl);
+                    $jsonText = GeneralUtility::getUrl($filePathOrUrl);
                 } catch (\Exception $e) {
                     $this->errorTitle = 'Error loading JSON';
-                    $this->errorMessage = 'Could not fetch data from remote "' . $fileUrl . '"';
+                    $this->errorMessage = 'Could not fetch data from remote "' . $filePathOrUrl . '"';
                     return [];
                 }
             }
 
             if (!$isRemoteUrl) {
-                $filePath = GeneralUtility::getFileAbsFileName($row['tx_bwstatictemplate_file_path']);
+                $filePath = GeneralUtility::getFileAbsFileName($filePathOrUrl);
                 if (file_exists($filePath)) {
                     $jsonText = file_get_contents($filePath);
                 } else {
@@ -135,7 +135,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // use from database
         if (!$row['tx_bwstatictemplate_from_file'] && $row['tx_bwstatictemplate_json']) {
-            $jsonText = $row['tx_bwstatictemplate_json'];
+            $jsonText = (string)$row['tx_bwstatictemplate_json'];
         }
 
         // empty json
@@ -145,7 +145,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // decode
         try {
-            return (array)json_decode($jsonText, true, 512, JSON_THROW_ON_ERROR);
+            /** @var array<string, mixed> $decoded */
+            $decoded = json_decode($jsonText, true, 512, JSON_THROW_ON_ERROR);
+            return $decoded;
         } catch (\Exception $e) {
             $this->errorTitle = 'Error decoding JSON';
             $this->errorMessage = 'No valid JSON data';
@@ -229,19 +231,24 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
     protected function getLanguageService(): LanguageService
     {
-        return $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
+        /** @var LanguageService $languageService */
+        $languageService = $GLOBALS['LANG'] ?? GeneralUtility::makeInstance(LanguageService::class);
+        return $languageService;
     }
 
     /**
-    * @param array<string, string> $row
+    * @param array<string, string|int|null> $row
     */
     protected function renderFluidBackendTemplate(array $row): string
     {
+        /** @var array<string, mixed> $typoScript */
         $typoScript = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
         $typoScriptService = GeneralUtility::makeInstance(TypoScriptService::class);
-        /** @var array<string, array<int, string>> $viewSettings */
-        $viewSettings = $typoScriptService->convertTypoScriptArrayToPlainArray($typoScript['lib.']['contentElement.']);
-        $templateName = $row['tx_bwstatictemplate_be_template'];
+        /** @var array<string, mixed> $libConfig */
+        $libConfig = $typoScript['lib.'] ?? [];
+        /** @var array{templateRootPaths: array<int, string>, partialRootPaths: array<int, string>, layoutRootPaths: array<int, string>} $viewSettings */
+        $viewSettings = $typoScriptService->convertTypoScriptArrayToPlainArray((array)($libConfig['contentElement.'] ?? []));
+        $templateName = (string)$row['tx_bwstatictemplate_be_template'];
 
         // set template name and root path from EXT:name/Resources/Private/Templates/Show.html
         if (str_starts_with($templateName, 'EXT:')) {
@@ -263,7 +270,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
                 templateRootPaths: $viewSettings['templateRootPaths'],
                 partialRootPaths: $viewSettings['partialRootPaths'],
                 layoutRootPaths: $viewSettings['layoutRootPaths'],
-                request: $GLOBALS['TYPO3_REQUEST'] ?? null,
+                request: ($GLOBALS['TYPO3_REQUEST'] ?? null) instanceof \Psr\Http\Message\ServerRequestInterface ? $GLOBALS['TYPO3_REQUEST'] : null,
             );
             /** @var \TYPO3\CMS\Core\View\ViewFactoryInterface $viewFactory */
             $viewFactory = GeneralUtility::getContainer()->get(\TYPO3\CMS\Core\View\ViewFactoryInterface::class);

@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Blueways\BwStaticTemplateTest\Acceptance\Frontend;
+
+use Blueways\BwStaticTemplateTest\Acceptance\Support\AcceptanceTester;
+
+class StaticTemplateCest
+{
+    /**
+     * Content element with no template path configured renders no template output.
+     */
+    public function canSeeNothingOnInvalidContentElement(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/invalid-template/');
+        $I->seeResponseCodeIs(200);
+        $I->dontSee('Static template rendered successfully');
+    }
+
+    /**
+     * Content element with a full EXT: path renders the referenced template.
+     */
+    public function canSeeTemplateWithFullExtPath(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/ext-path-template/');
+        $I->seeResponseCodeIs(200);
+        $I->see('Static template rendered successfully');
+    }
+
+    /**
+     * Content element with only a template name renders correctly when
+     * templateRootPath is configured via TypoScript constants.
+     */
+    public function canSeeTemplateWithNameOnly(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/template-name-only/');
+        $I->seeResponseCodeIs(200);
+        $I->see('Static template rendered successfully');
+    }
+}

@@ -54,6 +54,13 @@ _progress "Setting up configuration"
 "$typo3Binary" cache:flush
 _done
 
+# Create fixture image for FAL tests
+_progress "Creating fixture image in fileadmin"
+mkdir -p /var/www/html/public/fileadmin/user_upload
+echo 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' \
+    | base64 -d > /var/www/html/public/fileadmin/user_upload/fixture.png
+_done
+
 # Import DB fixtures
 for file in "$fixturePath"/*.sql; do
     _progress "Importing DB fixture \"$(basename "$file")\""

@@ -38,4 +38,25 @@ class StaticTemplateCest
         $I->seeResponseCodeIs(200);
         $I->see('Static template rendered successfully');
     }
+
+    /**
+     * JSON from the inline input field is injected as Fluid variables.
+     */
+    public function canSeeJsonVariablesInjectedIntoTemplate(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/json-variables/');
+        $I->seeResponseCodeIs(200);
+        $I->see('Hello from JSON', '.bwst-json-headline');
+        $I->see('blue', '.bwst-json-color');
+    }
+
+    /**
+     * FAL asset attached to the content element is injected as {files}.
+     */
+    public function canSeeFileInjectedIntoTemplate(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/file-injection/');
+        $I->seeResponseCodeIs(200);
+        $I->see('fixture.png', '.bwst-file-name');
+    }
 }

@@ -1,2 +1,115 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: '#^Method Blueways\\BwStaticTemplate\\DataProcessing\\JsonProcessor\:\:process\(\) should return array\<string, array\<string, string\>\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/DataProcessing/JsonProcessor.php
+
+		-
+			message: '#^Binary operation "\." between ''\<p\>\<strong\>'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Binary operation "\.\=" between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot access offset ''contentElement\.'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:getJson\(\) should return array\<string, mixed\> but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:getLanguageService\(\) should return TYPO3\\CMS\\Core\\Localization\\LanguageService but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Parameter \#1 \$row of method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:renderFluidBackendTemplate\(\) expects array\<string, string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Parameter \#1 \$row of method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:renderTablePreview\(\) expects array\<string, string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Parameter \#1 \$typoScriptArray of method TYPO3\\CMS\\Core\\TypoScript\\TypoScriptService\:\:convertTypoScriptArrayToPlainArray\(\) expects array\<int\|string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Binary operation "\.\=" between mixed and '',tx…'' results in an error\.$#'
+			identifier: assignOp.invalid
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''bw_static_template'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''ctrl'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''json'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''label_alt'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''palettes'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''templates'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''tt_content'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''typeicon_classes'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: '#^Cannot access offset ''types'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php

@@ -22,6 +22,10 @@
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
 		"bk2k/bootstrap-package": "^15.0",
+		"codeception/codeception": "^5.1",
+		"codeception/module-asserts": "^3.0",
+		"codeception/module-db": "^3.2",
+		"codeception/module-phpbrowser": "^3.0",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.12",
 		"friendsoftypo3/content-blocks": "^0.7.18 || ^1.0.0",
@@ -37,6 +41,11 @@
 	"autoload": {
 		"psr-4": {
 			"Blueways\\BwStaticTemplate\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Blueways\\BwStaticTemplateTest\\": "Tests/"
 		}
 	},
 	"config": {
@@ -57,6 +66,8 @@
 	},
 	"scripts": {
 		"ci:composer:normalize": "@composer normalize --no-check-lock --dry-run",
+		"ci:test:acceptance": "codecept run Acceptance --no-ansi",
+		"test:acceptance": "codecept run Acceptance",
 		"ci:editorconfig:lint": "ec --strict --git-only -n",
 		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
 		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",

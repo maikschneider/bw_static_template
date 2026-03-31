@@ -6,5 +6,5 @@ values (1, 1, 'Root Template', 1, 3,
 page = PAGE
 page.typeNum = 0
 page.10 < styles.content.get',
-'plugin.tx_bwstatictemplate.view.templateRootPath = EXT:bw_static_template/Resources/Private/Templates/',
+'plugin.tx_bwstatictemplate.view.templateRootPath = EXT:bw_static_template/Tests/Fixtures/Templates/',
 0, 0);

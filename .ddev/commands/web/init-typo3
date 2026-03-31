@@ -24,9 +24,10 @@ function _done() {
 
 # Create empty database
 _progress "Creating empty database"
-mysql -Nse "SHOW TABLES" $dbCredentials "$dbName" | while read -r table; do
-    mysql -e "DROP TABLE ${table}" $dbCredentials "$dbName"
-done
+tables=$(mysql -Nse "SHOW TABLES" $dbCredentials "$dbName" | tr '\n' ',')
+if [ -n "$tables" ]; then
+    mysql -e "SET FOREIGN_KEY_CHECKS=0; DROP TABLE IF EXISTS ${tables%,}; SET FOREIGN_KEY_CHECKS=1;" $dbCredentials "$dbName"
+fi
 _done
 
 # Prepare setup environment

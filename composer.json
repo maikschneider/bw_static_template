@@ -59,14 +59,12 @@
 		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
 		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
 		"ci:php:stan": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
-		"ci:rector": "rector --no-interaction --dry-run",
 		"ci:sca": [
 			"@ci:composer:normalize",
 			"@ci:editorconfig:lint",
 			"@ci:php:lint",
 			"@ci:php:fixer",
 			"@ci:php:stan",
-			"@ci:php:rector",
 			"@ci:typoscript:lint",
 			"@ci:xml:lint",
 			"@ci:yaml:lint"
@@ -81,12 +79,12 @@
 		"php:stan": "phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
 		"rector": "rector",
 		"sca": [
+			"@rector",
 			"@composer:normalize",
 			"@editorconfig:lint",
 			"@php:lint",
 			"@php:fixer",
 			"@php:stan",
-			"@rector",
 			"@typoscript:lint",
 			"@xml:lint",
 			"@yaml:lint"

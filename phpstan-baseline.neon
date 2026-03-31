@@ -1,2 +1,11 @@
 parameters:
-	ignoreErrors: []
+	ignoreErrors:
+		-
+			message: "#^Else branch is unreachable because ternary operator condition is always true\\.$#"
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: "#^Method Blueways\\\\BwStaticTemplate\\\\PreviewRenderer\\\\BackendPreviewRender\\:\\:getJson\\(\\) should return array\\<string, mixed\\> but returns array\\.$#"
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php

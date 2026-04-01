@@ -15,6 +15,7 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__ . '/Classes',
         __DIR__ . '/Configuration',
+        __DIR__ . '/config',
         __DIR__ . '/ext_emconf.php',
         __DIR__ . '/ext_tables.php',
     ])
@@ -24,7 +25,7 @@ return RectorConfig::configure()
     ->withSets([
         Typo3SetList::CODE_QUALITY,
         Typo3SetList::GENERAL,
-        Typo3LevelSetList::UP_TO_TYPO3_14,
+        Typo3LevelSetList::UP_TO_TYPO3_12,
     ])
     // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([

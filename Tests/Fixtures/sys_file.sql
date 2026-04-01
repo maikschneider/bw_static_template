@@ -1,0 +1,2 @@
+replace into `sys_file` (`uid`, `pid`, `storage`, `type`, `identifier`, `identifier_hash`, `folder_hash`, `mime_type`, `name`, `extension`, `missing`, `size`, `sha1`, `creation_date`, `modification_date`)
+values (1, 0, 1, 2, '/user_upload/fixture.png', 'a8a6c5bf2a8b4e4f8b6c2a8b4e4f8b6c2a8b4e4f', 'b6c2a8b4e4f8b6c2a8b4e4f8b6c2a8b4e4f8b6c2', 'image/png', 'fixture.png', 'png', 0, 68, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 0, 0);

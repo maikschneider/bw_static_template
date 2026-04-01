@@ -1,7 +1,7 @@
 Static Template CE
 ==================
 
-This TYPO3 extensions ships a custom content element that renders every fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
+This TYPO3 extension ships a custom content element that renders every Fluid template. Inject JSON data or FAL files into the templates. Perfect for fast template development.
 
 .. figure:: ./Images/Preview.jpg
     :alt: Plugin in the TYPO3 Backend
@@ -9,13 +9,13 @@ This TYPO3 extensions ships a custom content element that renders every fluid te
 Why?
 ----
 
-* Sometimes content is very unlikely to change regularly. It's faster to immediately write a fluid template than start the creation of a custom content element or adjusting an extension to your needs.
-* No need to write TCA or TypoScript to get frontend output, that can be adjusted through the backend. (E.g. quick image or phone number change)
-* If it's required to implement a standalone solution, the templates can be reused
+* Sometimes content is very unlikely to change regularly. It's faster to immediately write a Fluid template than to create a custom content element.
+* No need to write TCA or TypoScript to get frontend output that can be adjusted through the backend. (E.g. quick image or phone number change)
+* If a standalone solution is required, the templates can be reused.
 
 .. tip::
 
-    Perfect if your customer is lazy and never thinks about logging into the backend to do the changes by his own.
+    Perfect if your customer is lazy and never thinks about logging into the backend to do the changes by their own.
 
 Installation
 ------------
@@ -28,38 +28,54 @@ Installation
 
             composer require blueways/bw-static-template
 
-    2. Include static TypoScript template or manually import it:
+        .. note::
 
-        .. code:: typoscript
+            Requires ``blueways/bw-jsoneditor ^2.0`` and TYPO3 ``^13.4 || ^14.2``.
 
-            @import 'EXT:bw_static_template/Configuration/TypoScript/setup.typoscript'
+    2. Add the site set ``blueways/bw-static-template`` to your site configuration:
+
+        .. code:: yaml
+
+            # config/sites/<your-site>/config.yaml
+            sets:
+                - blueways/bw-static-template
 
 
 Usage
 -----
 
-Add the content element **Static Template** to a page
+Add the content element **Static Template** to a page.
 
 .. figure:: ./Images/NewContentElement.png
     :alt: Content Element Wizard
     :class: with-shadow
 
 
-Select a fluid template to render (e.g.: :file:`EXT:your_ext/Resources/Private/Partials/Header.html`).
+Header
+~~~~~~
 
+The standard TYPO3 **Header** field is available and rendered above the content element preview in the backend page module.
+
+
+Select a template
+~~~~~~~~~~~~~~~~~
+
+Enter a Fluid template path in the **Frontend template** field:
+
+* A template name (e.g. ``MyTemplate``) — resolved against the configured ``templateRootPaths``
+* A full EXT: path (e.g. ``EXT:your_ext/Resources/Private/Templates/MyTemplate.html``)
 
 .. figure:: ./Images/TCA.png
     :alt: TCA
     :class: with-shadow
 
-
 Save & done.
 
 
 Pass data into the template (optional)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Enter valid JSON:
+Enter valid JSON in the **JSON** field:
 
 .. code:: json
 
@@ -88,10 +104,16 @@ Now you can use the given data in your template, e.g.:
     </f:for>
 
 
-Select images (optional)
-~~~~~~~~~~~~~~~~~~~~~~~~
+Load JSON from file (optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The selected images are accessible as :file:`FileReference` via :file:`files` marker:
+Toggle **Use database** off to load JSON from a file path instead of the inline editor. Enter a relative or ``EXT:`` path in the **JSON file path** field. Remote URLs are also supported.
+
+
+Select images (optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The selected images are accessible as :file:`FileReference` objects via the ``{files}`` variable:
 
 .. code:: html
 
@@ -100,17 +122,23 @@ The selected images are accessible as :file:`FileReference` via :file:`files` ma
     </f:for>
 
 
+Backend preview template (optional)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Enter a template name or ``EXT:`` path in the **Backend preview** field to render a custom Fluid template in the backend page module preview instead of the default JSON table view. The same JSON data and file variables are available as in the frontend template.
+
+
 Configuration
 -------------
 
 Constants
 ~~~~~~~~~
 
-If you want to use the Layouts and Partials of fluid_styled_content, you just need to set the paths to the ones of your :file:`styles.content` configuration:
+Configure the template root paths so that the template name entered in the TCA field is resolved correctly:
 
 .. code:: typoscript
 
-    plugin.tx_bwstatictemplate_pi1 {
+    plugin.tx_bwstatictemplate {
         view {
             templateRootPath =
             partialRootPath =
@@ -122,7 +150,7 @@ If you want to use the Layouts and Partials of fluid_styled_content, you just ne
 Setup
 ~~~~~
 
-It's just a regular content element that is rendered like every other element of fluid_style_content. Here are some examples to inject some additional data into the templates:
+The content element is rendered like any other ``lib.contentElement``-based element. Use standard TypoScript to inject additional data:
 
 .. code:: typoscript
 
@@ -134,7 +162,7 @@ It's just a regular content element that is rendered like every other element of
             foo.value = bar
         }
 
-        # use DataProcessor (10 and 20 are reserved indexes)
+        # use DataProcessor (indexes 10 and 20 are reserved)
         dataProcessing {
 
             # Inject a menu
@@ -156,10 +184,10 @@ It's just a regular content element that is rendered like every other element of
 
 
 Contribute
--------------------
+----------
 
-This extension was made by Maik Schneider: Feel free to contribute!
+This extension was made by Maik Schneider. Feel free to contribute!
 
-* `Github-Repository <https://github.com/maikschneider/bw_static_template/>`__
+* `GitHub Repository <https://github.com/maikschneider/bw_static_template/>`__
 
 Thanks to `blueways <https://www.blueways.de/>`__ and `XIMA <https://www.xima.de/>`__!

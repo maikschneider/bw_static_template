@@ -52,6 +52,17 @@ class StaticTemplateCest
     }
 
     /**
+     * Content element with invalid JSON renders the page without exceptions and without JSON variable values.
+     */
+    public function canHandleInvalidJsonGracefully(AcceptanceTester $I): void
+    {
+        $I->amOnPage('/invalid-json/');
+        $I->seeResponseCodeIs(200);
+        $I->dontSee('Hello from JSON', '.bwst-json-headline');
+        $I->dontSee('blue', '.bwst-json-color');
+    }
+
+    /**
      * FAL asset attached to the content element is injected as {files}.
      */
     public function canSeeFileInjectedIntoTemplate(AcceptanceTester $I): void

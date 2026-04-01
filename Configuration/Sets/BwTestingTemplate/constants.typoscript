@@ -1,5 +1,0 @@
-plugin.tx_bwstatictemplate {
-  view {
-    templateRootPath = EXT:bw_static_template/Tests/Fixtures/Templates/
-  }
-}

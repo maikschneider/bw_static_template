@@ -27,7 +27,7 @@
 		"codeception/module-phpbrowser": "^3.0",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.12",
-		"friendsoftypo3/content-blocks": "^0.7.18 || ^1.0.0",
+		"friendsoftypo3/content-blocks": "^0.7.18 || ^1.0.0 || ^2.0.0",
 		"helhum/typo3-console": "^8.1",
 		"helmich/typo3-typoscript-lint": "^3.2",
 		"move-elevator/composer-translation-validator": "^1.3",

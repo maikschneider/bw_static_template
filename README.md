@@ -38,6 +38,12 @@ composer require blueways/bw-static-template
 @import 'EXT:bw_static_template/Configuration/TypoScript/setup.typoscript'
 ```
 
+3. Include static PageTS template or manually import it:
+
+```typoscript
+@import 'EXT:bw_static_template/Configuration/TSconfig/page.typoscript'
+```
+
 ## Usage
 
 Add the content element **Static Template** to a page

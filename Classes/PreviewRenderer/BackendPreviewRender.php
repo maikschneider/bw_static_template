@@ -46,6 +46,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
             $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
+            $html = $this->linkEditContent($html, $record);
             $pageRenderer = $this->pageRenderer;
             $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
                 JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()
@@ -64,12 +65,12 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
                 // TYPO3 v14: thumbCode removed, use getThumbCodeUnlinked via RecordInterface
                 if ($record->has('assets') && ($assets = $record->get('assets'))) {
                     /** @var iterable<\TYPO3\CMS\Core\Resource\FileReference>|\TYPO3\CMS\Core\Resource\FileReference $assets */
-                    $html .= $this->getThumbCodeUnlinked($assets);
+                    $image = $this->getThumbCodeUnlinked($assets);
                 }
             } else {
                 // TYPO3 v13
                 /** @phpstan-ignore staticMethod.notFound */
-                $html .= (string)BackendUtility::thumbCode(
+                $image = (string)BackendUtility::thumbCode(
                     $row,
                     'tt_content',
                     'assets',
@@ -82,9 +83,10 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
                     false
                 );
             }
+            $html .= $this->linkEditContent($image, $record);
         }
 
-        return $this->linkEditContent($html, $record);
+        return $html;
     }
 
     /**

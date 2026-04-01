@@ -67,6 +67,12 @@ parameters:
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
+			message: '#^Variable \$image might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
 			message: '#^Binary operation "\.\=" between mixed and '',tx…'' results in an error\.$#'
 			identifier: assignOp.invalid
 			count: 1

@@ -38,15 +38,21 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
         /** @var array<string, string|int|null> $row */
         $row = $record instanceof RecordInterface ? $item->getRow() : $record;
 
+        // template name intro block
+        if ($row['tx_bwstatictemplate_template_path']) {
+            $html = $this->linkEditContent(
+                '<p class="text-muted"><small>' . htmlspecialchars((string)$row['tx_bwstatictemplate_template_path']) . '</small></p>',
+                $record
+            );
+        }
+
         // custom preview
         if ($row['tx_bwstatictemplate_be_template']) {
-            $html = $this->renderFluidBackendTemplate($row);
+            $html .= $this->renderFluidBackendTemplate($row);
         }
 
         // default view
         if (!$row['tx_bwstatictemplate_be_template']) {
-            $html = $row['tx_bwstatictemplate_template_path'] ? '<p><strong>' . $row['tx_bwstatictemplate_template_path'] . '</strong></p>' : '';
-            $html = $this->linkEditContent($html, $record);
             $pageRenderer = $this->pageRenderer;
             $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
                 JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()

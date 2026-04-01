@@ -5,9 +5,9 @@
     'tt_content',
     'CType',
     [
-        'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
-        'bw_static_template',
-        'tx_bwstatictemplate_pi1',
+        'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
+        'value' => 'bw_static_template',
+        'icon' => 'tx_bwstatictemplate_pi1',
     ],
     'html',
     'after'

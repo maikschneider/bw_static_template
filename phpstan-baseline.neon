@@ -1,56 +1,74 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method Blueways\\BwStaticTemplate\\DataProcessing\\JsonProcessor\:\:process\(\) should return array\<string, array\<string, string\>\> but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/DataProcessing/JsonProcessor.php
-
-		-
-			message: '#^Binary operation "\." between ''\<p\>\<strong\>'' and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
-			path: Classes/PreviewRenderer/BackendPreviewRender.php
-
-		-
 			message: '#^Binary operation "\.\=" between non\-falsy\-string and mixed results in an error\.$#'
 			identifier: assignOp.invalid
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Cannot access offset ''contentElement\.'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:getJson\(\) should return array\<string, mixed\> but returns array\<mixed, mixed\>\.$#'
-			identifier: return.type
+			message: '#^Call to method assign\(\) on an unknown class TYPO3\\CMS\\Fluid\\View\\StandaloneView\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:getLanguageService\(\) should return TYPO3\\CMS\\Core\\Localization\\LanguageService but returns mixed\.$#'
-			identifier: return.type
+			message: '#^Call to method render\(\) on an unknown class TYPO3\\CMS\\Fluid\\View\\StandaloneView\.$#'
+			identifier: class.notFound
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Parameter \#1 \$row of method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:renderFluidBackendTemplate\(\) expects array\<string, string\>, array given\.$#'
-			identifier: argument.type
+			message: '#^Cannot call method getTemplatePaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setControllerAction\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Parameter \#1 \$row of method Blueways\\BwStaticTemplate\\PreviewRenderer\\BackendPreviewRender\:\:renderTablePreview\(\) expects array\<string, string\>, array given\.$#'
-			identifier: argument.type
+			message: '#^Cannot call method setLayoutRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
-			message: '#^Parameter \#1 \$typoScriptArray of method TYPO3\\CMS\\Core\\TypoScript\\TypoScriptService\:\:convertTypoScriptArrayToPlainArray\(\) expects array\<int\|string, mixed\>, mixed given\.$#'
-			identifier: argument.type
+			message: '#^Cannot call method setPartialRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setTemplateRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Domain\\RecordInterface and TYPO3\\CMS\\Core\\Domain\\RecordInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Variable \$image might not be defined\.$#'
+			identifier: variable.undefined
 			count: 1
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 

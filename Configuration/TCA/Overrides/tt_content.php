@@ -1,13 +1,18 @@
 <?php
 
 // register CType
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTcaSelectItem(
+use Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+ExtensionManagementUtility::addTcaSelectItem(
     'tt_content',
     'CType',
     [
         'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.title',
         'value' => 'bw_static_template',
         'icon' => 'tx_bwstatictemplate_pi1',
+        'description' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:pi1.wizard.description',
+        'group' => 'special',
     ],
     'html',
     'after'
@@ -69,7 +74,7 @@ $tempFields = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
+ExtensionManagementUtility::addTCAcolumns('tt_content', $tempFields);
 
 $GLOBALS['TCA']['tt_content']['palettes']['json'] = [
     'label' => 'LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:jsonPalette',
@@ -105,6 +110,6 @@ $GLOBALS['TCA']['tt_content']['types']['bw_static_template'] = [
     ',
 ];
 
-$GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = \Blueways\BwStaticTemplate\PreviewRenderer\BackendPreviewRender::class;
+$GLOBALS['TCA']['tt_content']['types']['bw_static_template']['previewRenderer'] = BackendPreviewRender::class;
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['bw_static_template'] = 'tx_bwstatictemplate_pi1';
 $GLOBALS['TCA']['tt_content']['ctrl']['label_alt'] .= ',tx_bwstatictemplate_template_path';

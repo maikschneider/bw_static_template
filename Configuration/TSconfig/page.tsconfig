@@ -1,0 +1,2 @@
+# Remove the exclusion of the content element
+TCEFORM.tt_content.CType.removeItems := removeFromList(bw_static_template)

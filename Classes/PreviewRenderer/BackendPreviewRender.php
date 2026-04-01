@@ -66,6 +66,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // append images (not in custom preview)
         if (!$row['tx_bwstatictemplate_be_template'] && $row['assets']) {
+            $image = '';
             if ($record instanceof RecordInterface) {
                 // TYPO3 v14: thumbCode removed, use getThumbCodeUnlinked via RecordInterface
                 if ($record->has('assets') && ($assets = $record->get('assets'))) {

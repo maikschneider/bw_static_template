@@ -26,7 +26,6 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
     protected string $errorTitle = '';
     public function __construct(private readonly PageRenderer $pageRenderer, private readonly ConfigurationManager $configurationManager)
     {
-        parent::__construct();
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string

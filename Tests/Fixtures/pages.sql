@@ -4,4 +4,5 @@ values (1, 0, 'Root', '/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 1),
 			 (3, 1, 'EXT Path Template', '/ext-path-template/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0),
 			 (4, 1, 'Template Name Only', '/template-name-only/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0),
 			 (5, 1, 'JSON Variables', '/json-variables/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0),
-			 (6, 1, 'File Injection', '/file-injection/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0);
+			 (6, 1, 'File Injection', '/file-injection/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0),
+			 (7, 1, 'Invalid JSON', '/invalid-json/', 0, 0, 0, 1, 1, 31, 31, 1, 1, 0);

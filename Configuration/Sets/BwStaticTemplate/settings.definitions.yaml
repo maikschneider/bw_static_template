@@ -1,0 +1,28 @@
+categories:
+  bwStaticTemplate:
+    label: 'Bw Static Template'
+  bwStaticTemplate.view:
+    label: 'View'
+    parent: bwStaticTemplate
+
+settings:
+  plugin.tx_bwstatictemplate.view.templateRootPath:
+    label: 'Template Root Path'
+    category: bwStaticTemplate.view
+    description: 'Path to the template root directory'
+    type: string
+    default: ''
+
+  plugin.tx_bwstatictemplate.view.partialRootPath:
+    label: 'Partial Root Path'
+    category: bwStaticTemplate.view
+    description: 'Path to the partials root directory'
+    type: string
+    default: ''
+
+  plugin.tx_bwstatictemplate.view.layoutRootPath:
+    label: 'Layout Root Path'
+    category: bwStaticTemplate.view
+    description: 'Path to the layouts root directory'
+    type: string
+    default: ''

@@ -38,7 +38,7 @@ Installation
 
             # config/sites/<your-site>/config.yaml
             sets:
-              - blueways/bw-static-template
+                - blueways/bw-static-template
 
 
 Usage

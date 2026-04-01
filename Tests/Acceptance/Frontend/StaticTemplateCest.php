@@ -14,8 +14,9 @@ class StaticTemplateCest
     public function canSeeNothingOnInvalidContentElement(AcceptanceTester $I): void
     {
         $I->amOnPage('/invalid-template/');
-        $I->seeResponseCodeIs(200);
+        $I->seeResponseCodeIs(500);
         $I->dontSee('Static template rendered successfully');
+        $I->see('InvalidTemplateResourceException');
     }
 
     /**

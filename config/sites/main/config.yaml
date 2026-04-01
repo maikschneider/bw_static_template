@@ -1,4 +1,7 @@
 base: /
+dependencies:
+  - blueways/bw-testing-template
+  - blueways/bw-static-template
 languages:
   -
     title: English

@@ -1,0 +1,4 @@
+name: blueways/bw-static-template
+label: Bw Static Template
+dependencies:
+  - typo3/fluid-styled-content

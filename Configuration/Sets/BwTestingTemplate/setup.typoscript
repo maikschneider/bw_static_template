@@ -1,0 +1,6 @@
+page = PAGE
+page.typeNum = 0
+page.10 < styles.content.get
+
+config.no_cache = 1
+config.sendCacheHeaders = 0

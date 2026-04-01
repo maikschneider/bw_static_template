@@ -3,32 +3,40 @@
 namespace Blueways\BwStaticTemplate\PreviewRenderer;
 
 use Blueways\BwStaticTemplate\UserFunc\ContentElementUserFunc;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\JavaScriptModuleInstruction;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\TypoScript\TypoScriptService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
+#[Autoconfigure(public: true)]
 class BackendPreviewRender extends StandardContentPreviewRenderer
 {
     protected string $errorMessage = '';
 
     protected string $errorTitle = '';
-    public function __construct(private readonly \TYPO3\CMS\Core\Page\PageRenderer $pageRenderer, private readonly \TYPO3\CMS\Extbase\Configuration\ConfigurationManager $configurationManager)
+    public function __construct(private readonly PageRenderer $pageRenderer, private readonly ConfigurationManager $configurationManager)
     {
+        parent::__construct();
     }
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $html = '';
+        $record = $item->getRecord();
+
+        // v14: getRecord() returns RecordInterface; v13: returns array
         /** @var array<string, string|int|null> $row */
-        $row = $item->getRecord();
+        $row = $record instanceof RecordInterface ? $item->getRow() : $record;
 
         // custom preview
         if ($row['tx_bwstatictemplate_be_template']) {
@@ -42,7 +50,7 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
             $pageRenderer->getJavaScriptRenderer()->addJavaScriptModuleInstruction(
                 JavaScriptModuleInstruction::create('@maikschneider/bw-static-template/backend.js')->instance()
             );
-            $html .= $this->renderTablePreview($row);
+            $html .= $this->renderTablePreview($row, $record);
         }
 
         // error view
@@ -52,27 +60,38 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // append images (not in custom preview)
         if (!$row['tx_bwstatictemplate_be_template'] && $row['assets']) {
-            $html .= (string)BackendUtility::thumbCode(
-                $row,
-                'tt_content',
-                'assets',
-                '',
-                '',
-                null,
-                0,
-                '',
-                '',
-                false
-            );
+            if ($record instanceof RecordInterface) {
+                // TYPO3 v14: thumbCode removed, use getThumbCodeUnlinked via RecordInterface
+                if ($record->has('assets') && ($assets = $record->get('assets'))) {
+                    /** @var iterable<\TYPO3\CMS\Core\Resource\FileReference>|\TYPO3\CMS\Core\Resource\FileReference $assets */
+                    $html .= $this->getThumbCodeUnlinked($assets);
+                }
+            } else {
+                // TYPO3 v13
+                /** @phpstan-ignore staticMethod.notFound */
+                $html .= (string)BackendUtility::thumbCode(
+                    $row,
+                    'tt_content',
+                    'assets',
+                    '',
+                    '',
+                    null,
+                    0,
+                    '',
+                    '',
+                    false
+                );
+            }
         }
 
-        return $this->linkEditContent($html, $row);
+        return $this->linkEditContent($html, $record);
     }
 
     /**
     * @param array<string, string|int|null> $row
+    * @param RecordInterface|array<string, string|int|null> $record
     */
-    protected function renderTablePreview(array $row): string
+    protected function renderTablePreview(array $row, RecordInterface|array $record): string
     {
         $json = $this->getJson($row);
         $table = $this->getJsonAsTable($json);
@@ -89,7 +108,9 @@ class BackendPreviewRender extends StandardContentPreviewRenderer
 
         // crop table
         $content = '<div class="jsonTablePreview jsonTablePreview--hidden" id="jsonTable' . $row['uid'] . '">';
-        $content .= $this->linkEditContent($table, $row);
+        if ($record instanceof RecordInterface) {
+            $content .= $this->linkEditContent($table, $record);
+        }
         $content .= '</div>';
         $moreIcon = '<span class="icon icon-size-small icon-state-default"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16"><g class="icon-color"><path d="m4.464 6.05-.707.707L8 11l4.243-4.243-.707-.707L8 9.586z"/></g></svg></span>';
         $moreText = $this->getLanguageService()->sL('LLL:EXT:bw_static_template/Resources/Private/Language/locallang.xlf:preview.more');

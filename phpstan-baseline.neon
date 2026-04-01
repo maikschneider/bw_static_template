@@ -7,6 +7,66 @@ parameters:
 			path: Classes/PreviewRenderer/BackendPreviewRender.php
 
 		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Call to method assign\(\) on an unknown class TYPO3\\CMS\\Fluid\\View\\StandaloneView\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Call to method render\(\) on an unknown class TYPO3\\CMS\\Fluid\\View\\StandaloneView\.$#'
+			identifier: class.notFound
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method getTemplatePaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setControllerAction\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setLayoutRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setPartialRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot call method setTemplateRootPaths\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
+			message: '#^Instanceof between TYPO3\\CMS\\Core\\Domain\\RecordInterface and TYPO3\\CMS\\Core\\Domain\\RecordInterface will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 2
+			path: Classes/PreviewRenderer/BackendPreviewRender.php
+
+		-
 			message: '#^Binary operation "\.\=" between mixed and '',tx…'' results in an error\.$#'
 			identifier: assignOp.invalid
 			count: 1

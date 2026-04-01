@@ -2,10 +2,12 @@
 
 namespace Blueways\BwStaticTemplate\UserFunc;
 
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ContentElementUserFunc
 {
+    #[AsAllowedCallable]
     public function getTemplateRootPath(string $content): string
     {
         if (str_starts_with($content, 'EXT:')) {
@@ -21,6 +23,7 @@ class ContentElementUserFunc
         return implode('/', $pathSegments);
     }
 
+    #[AsAllowedCallable]
     public function getTemplateName(string $content): string
     {
         if (str_starts_with($content, 'EXT:')) {

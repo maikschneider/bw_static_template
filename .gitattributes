@@ -3,6 +3,7 @@ Tests/Fixtures/**                      linguist-vendored
 /.ddev                                 export-ignore
 /.github                               export-ignore
 /config                                export-ignore
+/Configuration/Sets/BwTestingTemplate  export-ignore
 /Tests                                 export-ignore
 /.editorconfig                         export-ignore
 /.gitattributes                        export-ignore

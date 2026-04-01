@@ -21,7 +21,6 @@
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
-		"bk2k/bootstrap-package": "^15.0",
 		"codeception/codeception": "^5.1",
 		"codeception/module-asserts": "^3.0",
 		"codeception/module-db": "^3.2",
@@ -32,9 +31,8 @@
 		"helhum/typo3-console": "^8.1",
 		"helmich/typo3-typoscript-lint": "^3.2",
 		"move-elevator/composer-translation-validator": "^1.3",
-		"nikic/php-parser": "4.19.4 as 5.3.1",
-		"saschaegerer/phpstan-typo3": "^1.1",
-		"ssch/typo3-rector": "^2.10",
+		"saschaegerer/phpstan-typo3": "^1.1 || ^2.1",
+		"ssch/typo3-rector": "^2.10 || ^3.13",
 		"typo3/cms-base-distribution": "^12.0 || ^13.4",
 		"typo3/cms-lowlevel": "^12.0 || ^13.4"
 	},
@@ -72,14 +70,12 @@
 		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
 		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
 		"ci:php:stan": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
-		"ci:rector": "rector --no-interaction --dry-run",
 		"ci:sca": [
 			"@ci:composer:normalize",
 			"@ci:editorconfig:lint",
 			"@ci:php:lint",
 			"@ci:php:fixer",
 			"@ci:php:stan",
-			"@ci:php:rector",
 			"@ci:typoscript:lint",
 			"@ci:language:lint",
 			"@ci:yaml:lint"
@@ -100,7 +96,6 @@
 			"@php:lint",
 			"@php:fixer",
 			"@php:stan",
-			"@rector",
 			"@typoscript:lint",
 			"@language:lint",
 			"@yaml:lint"

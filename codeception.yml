@@ -1,0 +1,38 @@
+namespace: Blueways\BwStaticTemplateTest\Acceptance\Support
+actor: AcceptanceTester
+paths:
+  tests: Tests
+  output: Tests/Acceptance/_output
+  data: Tests/Acceptance/Fixtures
+  support: Tests/Acceptance/Support
+settings:
+  shuffle: false
+  lint: true
+  colors: true
+  memory_limit: 2048M
+extensions:
+  enabled:
+    - Codeception\Extension\RunFailed
+  config:
+    Codeception\Extension\RunFailed:
+      file: Tests/Acceptance/_output/_failed
+
+suites:
+  Acceptance:
+    actor: AcceptanceTester
+    modules:
+      enabled:
+        - Asserts
+        - PhpBrowser
+        - Db
+      config:
+        PhpBrowser:
+          url: 'https://bw-static-template.ddev.site'
+          verify: false
+        Db:
+          dsn: 'mysql:host=db;dbname=db'
+          user: 'db'
+          password: 'db'
+          populate: true
+          cleanup: false
+          populator: 'bash .ddev/commands/web/init-typo3'

@@ -21,14 +21,18 @@
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
+		"codeception/codeception": "^5.1",
+		"codeception/module-asserts": "^3.0",
+		"codeception/module-db": "^3.2",
+		"codeception/module-phpbrowser": "^3.0",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.12",
 		"friendsoftypo3/content-blocks": "^0.7.18 || ^1.0.0",
 		"helhum/typo3-console": "^8.1",
 		"helmich/typo3-typoscript-lint": "^3.2",
+		"move-elevator/composer-translation-validator": "^1.3",
 		"saschaegerer/phpstan-typo3": "^1.1 || ^2.1",
 		"ssch/typo3-rector": "^2.10 || ^3.13",
-		"symfony/translation": "^7.1",
 		"typo3/cms-base-distribution": "^12.0 || ^13.4",
 		"typo3/cms-lowlevel": "^12.0 || ^13.4"
 	},
@@ -37,9 +41,15 @@
 			"Blueways\\BwStaticTemplate\\": "Classes/"
 		}
 	},
+	"autoload-dev": {
+		"psr-4": {
+			"Blueways\\BwStaticTemplateTest\\": "Tests/"
+		}
+	},
 	"config": {
 		"allow-plugins": {
 			"ergebnis/composer-normalize": true,
+			"move-elevator/composer-translation-validator": true,
 			"typo3/class-alias-loader": true,
 			"typo3/cms-composer-installers": true
 		},
@@ -56,6 +66,7 @@
 	"scripts": {
 		"ci:composer:normalize": "@composer normalize --no-check-lock --dry-run",
 		"ci:editorconfig:lint": "ec --strict --git-only -n",
+		"ci:language:lint": "@composer validate-translations ./Resources/Private/Language",
 		"ci:php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
 		"ci:php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
 		"ci:php:stan": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
@@ -66,31 +77,31 @@
 			"@ci:php:fixer",
 			"@ci:php:stan",
 			"@ci:typoscript:lint",
-			"@ci:xml:lint",
+			"@ci:language:lint",
 			"@ci:yaml:lint"
 		],
+		"ci:test:acceptance": "codecept run Acceptance --no-ansi",
 		"ci:typoscript:lint": "typoscript-lint --fail-on-warnings",
-		"ci:xml:lint": "find ./ -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
 		"ci:yaml:lint": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint",
 		"composer:normalize": "@composer normalize --no-check-lock",
 		"editorconfig:lint": "ec --strict --fix --git-only -n",
+		"language:lint": "@composer validate-translations ./Resources/Private/Language",
 		"php:fixer": "php-cs-fixer --config=php-cs-fixer.php fix",
 		"php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*' -print0 | xargs -0 -n 1 -P 4 php -l",
 		"php:stan": "phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
 		"rector": "rector",
 		"sca": [
-			"@rector",
 			"@composer:normalize",
 			"@editorconfig:lint",
 			"@php:lint",
 			"@php:fixer",
 			"@php:stan",
 			"@typoscript:lint",
-			"@xml:lint",
+			"@language:lint",
 			"@yaml:lint"
 		],
+		"test:acceptance": "codecept run Acceptance",
 		"typoscript:lint": "typoscript-lint",
-		"xml:lint": "find ./ -name '*.xlf' ! -path './vendor/*' ! -path './var/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
 		"yaml:lint": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint"
 	}
 }

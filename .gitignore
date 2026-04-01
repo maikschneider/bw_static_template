@@ -5,3 +5,5 @@ var
 bin
 vendor
 Documentation-*
+Tests/Acceptance/_output
+Tests/Acceptance/Support/_generated

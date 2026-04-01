@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2086
+set -e
+
+## Description: Initialize TYPO3 installation for acceptance tests
+## Usage: init-typo3
+## Example: ddev init-typo3
+
+readonly dbHost="db"
+readonly dbUser="db"
+readonly dbPassword="db"
+readonly dbName="db"
+readonly dbCredentials="-h${dbHost} -u${dbUser} -p${dbPassword}"
+readonly fixturePath="/var/www/html/Tests/Fixtures"
+readonly typo3Binary="/var/www/html/vendor/bin/typo3"
+
+function _progress() {
+    printf "%s... " "$1"
+}
+
+function _done() {
+    printf "\e[32mDone\e[39m\n"
+}
+
+# Create empty database
+_progress "Creating empty database"
+tables=$(mysql -Nse "SHOW TABLES" $dbCredentials "$dbName" | tr '\n' ',')
+if [ -n "$tables" ]; then
+    mysql -e "SET FOREIGN_KEY_CHECKS=0; DROP TABLE IF EXISTS ${tables%,}; SET FOREIGN_KEY_CHECKS=1;" $dbCredentials "$dbName"
+fi
+_done
+
+# Prepare setup environment
+export TYPO3_DB_DRIVER=mysqli
+export TYPO3_DB_USERNAME="$dbUser"
+export TYPO3_DB_PASSWORD="$dbPassword"
+export TYPO3_DB_PORT=3306
+export TYPO3_DB_HOST="$dbHost"
+export TYPO3_DB_DBNAME="$dbName"
+export TYPO3_SETUP_ADMIN_EMAIL=admin@example.com
+export TYPO3_SETUP_ADMIN_USERNAME=admin
+export TYPO3_SETUP_ADMIN_PASSWORD=Passw0rd!
+export TYPO3_SERVER_TYPE=apache
+export TYPO3_PROJECT_NAME="EXT:bw_static_template"
+
+# Set up environment
+_progress "Setting up TYPO3 installation"
+"$typo3Binary" setup --no-interaction --force --quiet
+_done
+
+# Set trusted hosts pattern and flush cache
+_progress "Setting up configuration"
+"$typo3Binary" configuration:set SYS/trustedHostsPattern '.*.*' --no-interaction --quiet
+"$typo3Binary" cache:flush
+_done
+
+# Create fixture image for FAL tests
+_progress "Creating fixture image in fileadmin"
+mkdir -p /var/www/html/public/fileadmin/user_upload
+echo 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==' \
+    | base64 -d > /var/www/html/public/fileadmin/user_upload/fixture.png
+_done
+
+# Import DB fixtures
+for file in "$fixturePath"/*.sql; do
+    _progress "Importing DB fixture \"$(basename "$file")\""
+    mysql $dbCredentials "$dbName" < "$file"
+    _done
+done
